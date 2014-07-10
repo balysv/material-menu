@@ -17,12 +17,8 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-//def isReleaseBuild() {
-//    return version.contains("SNAPSHOT") == false
-//}
-
 def isReleaseBuild() {
-    return false
+    return version.contains("SNAPSHOT") == false
 }
 
 def getReleaseRepositoryUrl() {
@@ -99,6 +95,7 @@ afterEvaluate { project ->
 
     task androidJavadocs(type: Javadoc) {
         source = android.sourceSets.main.java.source
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     }
 
     task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {

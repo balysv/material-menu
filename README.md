@@ -8,7 +8,13 @@ Morphing Android menu, back and dismiss buttons
 Including in your project
 -------------------------
 
-The library will **Soon** be available on Maven Central
+The library is available on Maven Central
+
+    dependencies {
+        compile 'com.balysv:material-menu:1.0.0'
+    }
+
+
 
 Usage
 -----
