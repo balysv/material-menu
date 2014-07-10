@@ -1,0 +1,24 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:actionBarItemBackground">@null</item>
+        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+
+    </style>
+
+    <style name="ActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse</item>
+    </style>
+
+    <style name="ActionButtonStyle" parent="android:Widget.Holo.ActionButton">
+        <item name="android:background">@drawable/action_bar_item_background</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="android:Widget.Holo.ActionButton.Overflow">
+        <item name="android:background">@drawable/action_bar_item_background</item>
+    </style>
+
+</resources>

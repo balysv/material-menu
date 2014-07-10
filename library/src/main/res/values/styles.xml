@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialMenuView">
+        <attr name="color" format="color"/>
+        <attr name="scale" format="integer"/>
+        <attr name="transformDuration" format="integer"/>
+        <attr name="pressedDuration" format="integer"/>
+    </declare-styleable>
+</resources>
