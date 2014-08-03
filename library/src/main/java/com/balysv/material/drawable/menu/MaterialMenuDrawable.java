@@ -48,7 +48,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public static final int DEFAULT_PRESSED_DURATION   = 400;
 
     private enum AnimationState {
-        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK
+        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK
     }
 
     private static final int BASE_DRAWABLE_WIDTH  = 40;
@@ -220,6 +220,16 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 stopX += ratio * (dip6 + dip2);
                 pivotX = width / 2 + strokeWidth * 2;
                 break;
+            case X_CHECK:
+                // fade in
+                alpha = (int) (ratio * 255);
+                // rotation to check angle
+                rotation = ratio * CHECK_MIDDLE_ANGLE;
+                // lengthen both ends
+                startX += ratio * (dip4 + strokeWidth / 2);
+                stopX += ratio * (dip6 + dip2);
+                pivotX = width / 2 + strokeWidth * 2;
+                break;
         }
 
         iconPaint.setAlpha(alpha);
@@ -297,6 +307,17 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 stopX -= dip3;
                 break;
             case BURGER_CHECK:
+                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                break;
+            case X_CHECK:
+                // retain X configuration
+                rotation = X_TOP_LINE_ANGLE;
+                rotation2 = X_ROTATION_ANGLE;
+                pivotX = sidePadding + dip4;
+                pivotY = topPadding + dip3;
+                stopX += dip3;
+
+                // fade out
                 alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
                 break;
         }
@@ -394,6 +415,19 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 // length stays same as ARROW
                 startX += dip3 * ratio;
                 stopX -= dip3 * ratio;
+                break;
+            case X_CHECK:
+                // rotate from X to CHECK angles
+                rotation2 = -X_ROTATION_ANGLE * (1 - ratio);
+                rotation = X_BOT_LINE_ANGLE + ratio * (-X_BOT_LINE_ANGLE + CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE);
+
+                // move pivot from X to CHECL
+                pivotX = sidePadding + dip4 + ratio * (-sidePadding - dip4 + width / 2 - strokeWidth);
+                pivotY = height - topPadding - dip3 + ratio * (-height + topPadding + dip3 + height / 2 - strokeWidth);
+
+                // shorten both ends
+                startX += dip3 - dip3 * (1 - ratio);
+                stopX -= dip3 - dip6 * (1 - ratio);
                 break;
         }
 
@@ -598,6 +632,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         if ((isCurrentBurger && isAnimatingCheck) || (isCurrentCheck && isAnimatingBurger)) {
             animationState = AnimationState.BURGER_CHECK;
             return isCurrentBurger;
+        }
+
+        if ((isCurrentX && isAnimatingCheck) || (isCurrentCheck && isAnimatingX)) {
+            animationState = AnimationState.X_CHECK;
+            return isCurrentX;
         }
 
         throw new IllegalStateException(
