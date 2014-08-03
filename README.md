@@ -121,11 +121,11 @@ Otherwise, to disable circle pressed state use
 Simply add `MaterialMenuView` in your custom layout and register an `OnClickListener` to do the
 transformations. 
 
-See source of Demo for details
+See [source of Demo][3] for details
 
 Developed By
 --------------------
-Balys Valentukevicius - <balys.v@gmail.com>
+Balys Valentukevicius - <balys.v@gmail.com> @ [Lemon Labs][2]
 
 License
 -----------
@@ -145,3 +145,5 @@ License
     limitations under the License.
     
 [1]: https://raw.github.com/balysv/material-menu/master/art/demo.gif
+[2]: http://www.lemonlabs.co
+[3]: https://github.com/balysv/material-menu/blob/master/demo%2Fsrc%2Fmain%2Fjava%2Fcom%2Fbalysv%2Fmaterial%2Fdrawable%2Fmenu%2Fdemo%2FCustomViewActivity.java
