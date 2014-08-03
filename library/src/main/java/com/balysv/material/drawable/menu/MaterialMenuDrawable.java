@@ -48,7 +48,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public static final int DEFAULT_PRESSED_DURATION   = 400;
 
     private enum AnimationState {
-        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK
+        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK
     }
 
     private static final int BASE_DRAWABLE_WIDTH  = 40;
@@ -213,6 +213,13 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 }
                 pivotX = width / 2 + strokeWidth * 2;
                 break;
+            case BURGER_CHECK:
+                rotation = ratio * CHECK_MIDDLE_ANGLE;
+                // lengthen both ends
+                startX += ratio * (dip4 + strokeWidth / 2);
+                stopX += ratio * (dip6 + dip2);
+                pivotX = width / 2 + strokeWidth * 2;
+                break;
         }
 
         iconPaint.setAlpha(alpha);
@@ -288,6 +295,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pivotY = height / 2;
                 startX += dip3;
                 stopX -= dip3;
+                break;
+            case BURGER_CHECK:
+                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
                 break;
         }
 
@@ -372,6 +382,18 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 // length stays same as ARROW
                 startX += dip3;
                 stopX -= dip3;
+                break;
+            case BURGER_CHECK:
+                // rotate from ARROW angle to CHECK angle
+                rotation = ratio * (CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE);
+
+                // move pivot from ARROW pivot to CHECK pivot
+                pivotX = width / 2 - strokeWidth * ratio;
+                pivotY = height / 2 - strokeWidth * ratio;
+
+                // length stays same as ARROW
+                startX += dip3 * ratio;
+                stopX -= dip3 * ratio;
                 break;
         }
 
@@ -571,6 +593,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         if ((isCurrentArrow && isAnimatingCheck) || (isCurrentCheck && isAnimatingArrow)) {
             animationState = AnimationState.ARROW_CHECK;
             return isCurrentArrow;
+        }
+
+        if ((isCurrentBurger && isAnimatingCheck) || (isCurrentCheck && isAnimatingBurger)) {
+            animationState = AnimationState.BURGER_CHECK;
+            return isCurrentBurger;
         }
 
         throw new IllegalStateException(
