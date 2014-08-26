@@ -76,5 +76,5 @@ public interface MaterialMenu {
     /**
      * @return {@link MaterialMenuDrawable} to be used for the menu
      */
-    public abstract MaterialMenuDrawable getDrawable();
+    public MaterialMenuDrawable getDrawable();
 }

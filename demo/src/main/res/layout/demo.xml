@@ -86,6 +86,17 @@
             android:layout_marginLeft="12dp"
             android:text="@string/animate_x"/>
 
+        <Button
+            style="?android:buttonBarStyle"
+            android:id="@+id/animate_item_check"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:text="@string/animate_check"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -131,6 +142,17 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:text="@string/set_x"/>
+
+        <Button
+            style="?android:buttonBarStyle"
+            android:id="@+id/switch_item_check"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:text="@string/set_check"/>
 
 
     </LinearLayout>

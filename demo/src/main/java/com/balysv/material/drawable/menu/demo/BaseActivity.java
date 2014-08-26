@@ -33,9 +33,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         findViewById(R.id.switch_item_arrow).setOnClickListener(this);
         findViewById(R.id.switch_item_menu).setOnClickListener(this);
         findViewById(R.id.switch_item_x).setOnClickListener(this);
+        findViewById(R.id.switch_item_check).setOnClickListener(this);
         findViewById(R.id.animate_item_arrow).setOnClickListener(this);
         findViewById(R.id.animate_item_menu).setOnClickListener(this);
         findViewById(R.id.animate_item_x).setOnClickListener(this);
+        findViewById(R.id.animate_item_check).setOnClickListener(this);
     }
 
     @Override public void onClick(View v) {
@@ -50,6 +52,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
             case R.id.animate_item_x:
                 materialMenuView.animateState(IconState.X);
                 break;
+            case R.id.animate_item_check:
+                materialMenuView.animateState(IconState.CHECK);
+                break;
             case R.id.switch_item_menu:
                 materialMenuView.setState(IconState.BURGER);
                 break;
@@ -58,6 +63,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 break;
             case R.id.switch_item_x:
                 materialMenuView.setState(IconState.X);
+                break;
+            case R.id.switch_item_check:
+                materialMenuView.setState(IconState.CHECK);
                 break;
             case R.id.material_menu_button:
                 setMainState();
@@ -87,7 +95,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
     protected int generateState(int previous) {
-        int generated = new Random().nextInt(3);
+        int generated = new Random().nextInt(4);
         return generated != previous ? generated : generateState(previous);
     }
 
@@ -99,6 +107,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 return IconState.ARROW;
             case 2:
                 return IconState.X;
+            case 3:
+                return IconState.CHECK;
         }
         throw new IllegalArgumentException("Must be a number [0,3)");
     }
