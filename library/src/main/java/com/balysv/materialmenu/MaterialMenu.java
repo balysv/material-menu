@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.balysv.material.drawable.menu;
+package com.balysv.materialmenu;
 
 import android.view.animation.Interpolator;
 
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.IconState;
+import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 /**
  * API for interaction with {@link MaterialMenuDrawable}

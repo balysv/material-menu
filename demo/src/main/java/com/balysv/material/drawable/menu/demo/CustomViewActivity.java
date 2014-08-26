@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.balysv.material.drawable.menu.MaterialMenuView;
+import com.balysv.materialmenu.MaterialMenuView;
 
 public class CustomViewActivity extends BaseActivity {
 

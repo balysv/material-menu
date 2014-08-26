@@ -6,11 +6,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.balysv.material.drawable.menu.MaterialMenuView;
+import com.balysv.materialmenu.MaterialMenuView;
 
 import java.util.Random;
 
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.IconState;
+import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 public abstract class BaseActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 

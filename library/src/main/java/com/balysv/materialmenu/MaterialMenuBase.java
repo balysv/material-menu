@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package com.balysv.material.drawable.menu;
+package com.balysv.materialmenu;
 
 import android.os.Bundle;
 import android.view.animation.Interpolator;
 
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.IconState;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.IconState.BURGER;
-
 /**
- * Base class for ActionBar implementations of {@link com.balysv.material.drawable.menu.MaterialMenuDrawable}
+ * Base class for ActionBar implementations of {@link MaterialMenuDrawable}
  *
  * @see MaterialMenuIcon
  */
@@ -31,19 +28,19 @@ public abstract class MaterialMenuBase implements MaterialMenu {
 
     private static final String STATE_KEY = "material_menu_icon_state";
 
-    protected IconState currentState = IconState.BURGER;
+    protected MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
 
-    public final void setState(IconState state) {
+    public final void setState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().setIconState(state);
     }
 
-    public final void animateState(IconState state) {
+    public final void animateState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().animateIconState(state, false);
     }
 
-    public final void animatePressedState(IconState state) {
+    public final void animatePressedState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().animateIconState(state, true);
     }
@@ -67,7 +64,7 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     public abstract MaterialMenuDrawable getDrawable();
 
     /**
-     * Overwrites behaviour of pressed state circle animation even when using {@link #animatePressedState(IconState)}
+     * Overwrites behaviour of pressed state circle animation even when using {@link #animatePressedState(com.balysv.materialmenu.MaterialMenuDrawable.IconState)}
      *
      * @param neverDrawTouch true to never draw pressed state circle animation
      */
@@ -93,9 +90,9 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         if (state != null) {
             String iconStateName = state.getString(STATE_KEY);
             if (iconStateName == null) {
-                iconStateName = BURGER.name();
+                iconStateName = MaterialMenuDrawable.IconState.BURGER.name();
             }
-            setState(IconState.valueOf(iconStateName));
+            setState(MaterialMenuDrawable.IconState.valueOf(iconStateName));
         }
     }
 }

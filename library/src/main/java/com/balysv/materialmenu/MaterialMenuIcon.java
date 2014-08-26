@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.balysv.material.drawable.menu;
+package com.balysv.materialmenu;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -23,12 +23,12 @@ import android.content.res.Resources;
 import android.view.View;
 import android.view.ViewGroup;
 
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_SCALE;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 
 /**
- * A helper class for implementing {@link com.balysv.material.drawable.menu.MaterialMenuDrawable}
+ * A helper class for implementing {@link MaterialMenuDrawable}
  * as an {@link android.app.ActionBar} icon.
  * <p/>
  * In order to preserve default ActionBar icon click state call {@link MaterialMenuBase#setNeverDrawTouch(boolean)}.

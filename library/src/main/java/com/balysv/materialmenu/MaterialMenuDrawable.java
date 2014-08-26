@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.balysv.material.drawable.menu;
+package com.balysv.materialmenu;
 
 
 import android.content.Context;

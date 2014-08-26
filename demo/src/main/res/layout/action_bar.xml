@@ -8,7 +8,7 @@
               android:layout_marginLeft="8dp"
               android:gravity="center_vertical">
 
-    <com.balysv.material.drawable.menu.MaterialMenuView
+    <com.balysv.materialmenu.MaterialMenuView
         android:id="@+id/action_bar_menu"
         android:layout_width="40dp"
         android:layout_height="42dp"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.balysv.material.drawable.menu;
+package com.balysv.materialmenu;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -26,14 +26,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
 
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_COLOR;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_SCALE;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
-import static com.balysv.material.drawable.menu.MaterialMenuDrawable.IconState;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 /**
- * A basic View wrapper of {@link com.balysv.material.drawable.menu.MaterialMenuDrawable}. Used
+ * A basic View wrapper of {@link MaterialMenuDrawable}. Used
  * for custom view ActionBar or other layouts
  */
 public class MaterialMenuView extends View implements MaterialMenu {
@@ -64,17 +64,17 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     private void initAttributes(Context context, AttributeSet attributeSet) {
-        TypedArray attr = getTypedArray(context, attributeSet, R.styleable.MaterialMenuView);
+        TypedArray attr = getTypedArray(context, attributeSet, com.balysv.materialmenu.R.styleable.MaterialMenuView);
 
         if (attr == null) {
             return;
         }
 
         try {
-            color = attr.getColor(R.styleable.MaterialMenuView_color, DEFAULT_COLOR);
-            scale = attr.getInteger(R.styleable.MaterialMenuView_scale, DEFAULT_SCALE);
-            transformDuration = attr.getInteger(R.styleable.MaterialMenuView_transformDuration, DEFAULT_TRANSFORM_DURATION);
-            pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_pressedDuration, DEFAULT_PRESSED_DURATION);
+            color = attr.getColor(com.balysv.materialmenu.R.styleable.MaterialMenuView_color, DEFAULT_COLOR);
+            scale = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_scale, DEFAULT_SCALE);
+            transformDuration = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_transformDuration, DEFAULT_TRANSFORM_DURATION);
+            pressedDuration = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_pressedDuration, DEFAULT_PRESSED_DURATION);
         } finally {
             attr.recycle();
         }

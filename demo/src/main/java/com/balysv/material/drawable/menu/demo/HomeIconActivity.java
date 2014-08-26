@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.balysv.material.drawable.menu.MaterialMenuIcon;
+import com.balysv.materialmenu.MaterialMenuIcon;
 
 
 public class HomeIconActivity extends BaseActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
