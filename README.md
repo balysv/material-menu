@@ -1,7 +1,7 @@
 Material Menu
 ===============
 
-Morphing Android menu, back and dismiss buttons
+Morphing Android menu, back, dismiss and check buttons
 
 ![Demo Image][1]
 
@@ -11,7 +11,7 @@ Including in your project
 The library is available on Maven Central
 
     dependencies {
-        compile 'com.balysv:material-menu:1.0.0'
+        compile 'com.balysv:material-menu:1.1.0'
     }
 
 
@@ -40,9 +40,9 @@ A POJO that initializes the drawable and replaces the ActionBar icon. See usage 
 
 ## API
 
-There are three icon states:
+There are four icon states:
 
-    BURGER, ARROW, X
+    BURGER, ARROW, X, CHECK
 
 To morph the drawable state with a pressed circle animation
 
