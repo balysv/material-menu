@@ -184,21 +184,26 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
         switch (animationState) {
             case BURGER_ARROW:
-                // rotate by 180 and shorten one end
-                rotation = transformationValue * ARROW_MID_LINE_ANGLE;
+                // rotate by 180
+                if (isMorphingForward()) {
+                    rotation = ratio * ARROW_MID_LINE_ANGLE;
+                } else {
+                    rotation = ARROW_MID_LINE_ANGLE + (1 - ratio) * ARROW_MID_LINE_ANGLE;
+                }
+                // shorten one end
                 stopX -= ratio * strokeWidth / 2;
                 break;
             case BURGER_X:
                 // fade out
-                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                alpha = (int) ((1 - ratio) * 255);
                 break;
             case ARROW_X:
                 // fade out and shorten one end
-                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                alpha = (int) ((1 - ratio) * 255);
                 startX += (1 - ratio) * strokeWidth / 2;
                 break;
             case ARROW_CHECK:
-                if (transformationValue <= TRANSFORMATION_MID) {
+                if (isMorphingForward()) {
                     // rotate until required angle
                     rotation = ratio * CHECK_MIDDLE_ANGLE;
                     // lengthen both ends
@@ -214,6 +219,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pivotX = width / 2 + strokeWidth * 2;
                 break;
             case BURGER_CHECK:
+                // rotate until required angle
                 rotation = ratio * CHECK_MIDDLE_ANGLE;
                 // lengthen both ends
                 startX += ratio * (dip4 + strokeWidth / 2);
@@ -255,7 +261,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
         switch (animationState) {
             case BURGER_ARROW:
-                if (transformationValue <= TRANSFORMATION_MID) {
+                if (isMorphingForward()) {
                     // rotate until required angle
                     rotation = ratio * ARROW_BOT_LINE_ANGLE;
                 } else {
@@ -298,7 +304,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 break;
             case ARROW_CHECK:
                 // fade out
-                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                alpha = (int) ((1 - ratio) * 255);
                 // retain starting arrow configuration
                 rotation = ARROW_BOT_LINE_ANGLE;
                 pivotX = width / 2;
@@ -307,7 +313,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 stopX -= dip3;
                 break;
             case BURGER_CHECK:
-                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                // fade out
+                alpha = (int) ((1 - ratio) * 255);
                 break;
             case X_CHECK:
                 // retain X configuration
@@ -318,7 +325,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 stopX += dip3;
 
                 // fade out
-                alpha = Math.max(0, Math.min(255, (int) ((1 - ratio) * 255)));
+                alpha = (int) ((1 - ratio) * 255);
                 break;
         }
 
@@ -346,7 +353,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
         switch (animationState) {
             case BURGER_ARROW:
-                if (transformationValue <= TRANSFORMATION_MID) {
+                if (isMorphingForward()) {
                     // rotate to required angle
                     rotation = ARROW_TOP_LINE_ANGLE * ratio;
                 } else {
@@ -362,7 +369,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 stopX = width - sidePadding - dip3 * ratio;
                 break;
             case BURGER_X:
-                if (transformationValue <= TRANSFORMATION_MID) {
+                if (isMorphingForward()) {
                     // rotate around
                     rotation2 = -X_ROTATION_ANGLE * ratio;
                 } else {
@@ -419,11 +426,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             case X_CHECK:
                 // rotate from X to CHECK angles
                 rotation2 = -X_ROTATION_ANGLE * (1 - ratio);
-                rotation = X_BOT_LINE_ANGLE + ratio * (-X_BOT_LINE_ANGLE + CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE);
+                rotation = X_BOT_LINE_ANGLE + (CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE - X_BOT_LINE_ANGLE) * ratio;
 
-                // move pivot from X to CHECL
-                pivotX = sidePadding + dip4 + ratio * (-sidePadding - dip4 + width / 2 - strokeWidth);
-                pivotY = height - topPadding - dip3 + ratio * (-height + topPadding + dip3 + height / 2 - strokeWidth);
+                // move pivot from X to CHECK
+                pivotX = sidePadding + dip4 + (width / 2 - strokeWidth - sidePadding - dip4) * ratio;
+                pivotY = height - topPadding - dip3 + (topPadding + dip3 + height / 2 - strokeWidth - height) * ratio;
 
                 // shorten both ends
                 startX += dip3 - dip3 * (1 - ratio);
@@ -449,6 +456,10 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             canvas.drawLine(0, i, width, i, gridPaint);
             if (i % gridOffset == 0) gridPaint.setColor(Color.GREEN);
         }
+    }
+
+    private boolean isMorphingForward() {
+        return transformationValue <= TRANSFORMATION_MID;
     }
 
     @Override public void setAlpha(int alpha) {
@@ -510,7 +521,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 transformationValue = TRANSFORMATION_MID;
                 break;
             case CHECK:
-                animationState = AnimationState.ARROW_CHECK;
+                animationState = AnimationState.BURGER_CHECK;
                 transformationValue = TRANSFORMATION_MID;
         }
         currentIconState = iconState;
