@@ -16,6 +16,7 @@
 
 package com.balysv.material.drawable.menu;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.Resources;
@@ -54,6 +55,7 @@ public class MaterialMenuIcon extends MaterialMenuBase {
         setupActionBar(activity);
     }
 
+    @TargetApi(14)
     private void setupActionBar(Activity activity) {
         Resources resources = activity.getResources();
         int id = resources.getIdentifier("android:id/home", null, null);

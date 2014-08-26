@@ -91,7 +91,10 @@ public abstract class MaterialMenuBase implements MaterialMenu {
      */
     public void syncState(Bundle state) {
         if (state != null) {
-            String iconStateName = state.getString(STATE_KEY, BURGER.name());
+            String iconStateName = state.getString(STATE_KEY);
+            if (iconStateName == null) {
+                iconStateName = BURGER.name();
+            }
             setState(IconState.valueOf(iconStateName));
         }
     }
