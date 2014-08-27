@@ -1,6 +1,18 @@
 Change Log
 ==========
 
+Version 1.1.1 (2014-08-27)
+----------------------------
+
+- Changed Maven ArtifactId to `com.balysv.materialmenu` for extras support
+- Added support to API 9 and higher using NineOldAndroids
+- Added EXTRAS: ActionBarCompat and ActionBarSherlock support
+
+Usage: 
+
+- import `com.balysv.materialmenu:material-menu-abs:1.1.1` for ActionBarSherlock and use `MaterialMenuIconSherlock` 
+- import `com.balysv.materialmenu:material-menu-abc:1.1.1` for ActionBarCompat and use `MaterialMenuIconCompat`. 
+
 Version 1.1.0 (2014-08-26)
 ----------------------------
 
