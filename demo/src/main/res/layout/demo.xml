@@ -7,15 +7,20 @@
     android:background="@android:color/darker_gray"
     tools:context=".DemoActivity">
 
-    <com.balysv.material.drawable.menu.MaterialMenuView
-        android:id="@+id/material_menu_button"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:color="@android:color/holo_red_dark"
-        app:transformDuration="3000"
-        app:scale="@integer/demo_scale"/>
+        android:layout_centerHorizontal="true">
+
+        <com.balysv.materialmenu.MaterialMenuView
+            android:id="@+id/material_menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:color="#ffcc0000"
+            app:transformDuration="3000"
+            app:scale="@integer/demo_scale"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_above="@+id/item_animation_controls"
@@ -34,11 +39,11 @@
             android:text="@string/duration"
             />
 
-    <SeekBar
-        android:id="@+id/item_animation_duration"
-        android:layout_marginLeft="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/item_animation_duration"
+            android:layout_marginLeft="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,49 +57,41 @@
         android:background="#484848">
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/animate_item_menu"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/animate_menu"/>
 
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/animate_item_arrow"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/animate_arrow"/>
 
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/animate_item_x"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/animate_x"/>
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/animate_item_check"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/animate_check"/>
 
     </LinearLayout>
@@ -109,49 +106,41 @@
         android:background="#282828">
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/switch_item_menu"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/set_menu"/>
 
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/switch_item_arrow"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/set_arrow"/>
 
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/switch_item_x"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/set_x"/>
 
         <Button
-            style="?android:buttonBarStyle"
             android:id="@+id/switch_item_check"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
+            android:padding="4dp"
             android:text="@string/set_check"/>
 
 

@@ -5,14 +5,28 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.balysv.material.drawable.menu.demo"
-        minSdkVersion 14
+        applicationId "com.balysv.materialmenu.demo"
+        minSdkVersion 9
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
+    }
+
+    productFlavors {
+        stock {
+            applicationId "com.balysv.materialmenu.demo.stock"
+        }
+        abc {
+            applicationId "com.balysv.materialmenu.demo.abc"
+        }
+        abs {
+            applicationId "com.balysv.materialmenu.demo.abs"
+        }
     }
 }
 
 dependencies {
     compile project(':library')
+    absCompile project(':extras-abs')
+    abcCompile project(':extras-abc')
 }

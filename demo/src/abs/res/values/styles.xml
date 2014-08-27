@@ -1,0 +1,26 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="actionBarItemBackground">@null</item>
+        <item name="actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+
+    </style>
+
+    <style name="ActionBarStyle" parent="Widget.Sherlock.ActionBar.Solid">
+        <item name="displayOptions">showTitle</item>
+        <item name="titleTextStyle">@style/TextAppearance.Sherlock.Widget.ActionBar.Title.Inverse</item>
+    </style>
+
+    <style name="ActionButtonStyle" parent="Widget.Sherlock.ActionButton">
+        <item name="android:background">@drawable/action_bar_item_background</item>
+        <item name="background">@drawable/action_bar_item_background</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.Sherlock.ActionButton.Overflow">
+        <item name="android:background">@drawable/action_bar_item_background</item>
+        <item name="background">@drawable/action_bar_item_background</item>
+    </style>
+
+</resources>

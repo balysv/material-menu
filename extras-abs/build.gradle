@@ -5,11 +5,10 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId 'com.balysv.materialmenu'
         minSdkVersion 9
         targetSdkVersion 19
-        versionCode 3
-        versionName "1.1.1"
+        versionCode 2
+        versionName "1.1.0"
     }
 
     compileOptions {
@@ -19,7 +18,11 @@ android {
 }
 
 dependencies {
-    compile 'com.nineoldandroids:library:2.4.0'
+    compile project(':library')
+    compile ('com.actionbarsherlock:actionbarsherlock:4.4.0@aar') {
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
+    compile 'com.android.support:support-v4:19.1.0'
 }
 
 apply from: '../maven_push.gradle'
