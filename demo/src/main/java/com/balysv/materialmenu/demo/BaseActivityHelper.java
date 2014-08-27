@@ -1,8 +1,5 @@
-package com.balysv.material.drawable.menu.demo;
+package com.balysv.materialmenu.demo;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.SeekBar;
 
@@ -12,32 +9,28 @@ import java.util.Random;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
-public abstract class BaseActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     private MaterialMenuView materialMenuView;
     private int              materialButtonState;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.demo);
-
-        SeekBar duration = (SeekBar) findViewById(R.id.item_animation_duration);
+    public void init(View parent) {
+        SeekBar duration = (SeekBar) parent.findViewById(R.id.item_animation_duration);
         duration.setMax(4600);
         duration.setProgress(2600);
         duration.setOnSeekBarChangeListener(this);
 
-        materialMenuView = (MaterialMenuView) findViewById(R.id.material_menu_button);
+        materialMenuView = (MaterialMenuView) parent.findViewById(R.id.material_menu_button);
         materialMenuView.setOnClickListener(this);
 
-        findViewById(R.id.switch_item_arrow).setOnClickListener(this);
-        findViewById(R.id.switch_item_menu).setOnClickListener(this);
-        findViewById(R.id.switch_item_x).setOnClickListener(this);
-        findViewById(R.id.switch_item_check).setOnClickListener(this);
-        findViewById(R.id.animate_item_arrow).setOnClickListener(this);
-        findViewById(R.id.animate_item_menu).setOnClickListener(this);
-        findViewById(R.id.animate_item_x).setOnClickListener(this);
-        findViewById(R.id.animate_item_check).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_arrow).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_menu).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_x).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_check).setOnClickListener(this);
+        parent.findViewById(R.id.animate_item_arrow).setOnClickListener(this);
+        parent.findViewById(R.id.animate_item_menu).setOnClickListener(this);
+        parent.findViewById(R.id.animate_item_x).setOnClickListener(this);
+        parent.findViewById(R.id.animate_item_check).setOnClickListener(this);
     }
 
     @Override public void onClick(View v) {
@@ -73,12 +66,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_icon, menu);
-        return true;
-    }
-
     @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         materialMenuView.setTransformationDuration(400 + progress);
     }
@@ -94,12 +81,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         materialMenuView.animatePressedState(intToState(materialButtonState));
     }
 
-    protected int generateState(int previous) {
+    public static int generateState(int previous) {
         int generated = new Random().nextInt(4);
         return generated != previous ? generated : generateState(previous);
     }
 
-    protected IconState intToState(int state) {
+    public static IconState intToState(int state) {
         switch (state) {
             case 0:
                 return IconState.BURGER;

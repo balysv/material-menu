@@ -1,4 +1,4 @@
-package com.balysv.material.drawable.menu.demo;
+package com.balysv.materialmenu.demo.stock;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -8,8 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.balysv.materialmenu.MaterialMenuView;
+import com.balysv.materialmenu.demo.R;
 
-public class CustomViewActivity extends BaseActivity {
+import static com.balysv.materialmenu.demo.BaseActivityHelper.generateState;
+import static com.balysv.materialmenu.demo.BaseActivityHelper.intToState;
+
+public class CustomViewActivity extends BaseActivity implements View.OnClickListener {
 
     private MaterialMenuView materialMenu;
     private int              actionBarMenuState;
@@ -39,7 +43,7 @@ public class CustomViewActivity extends BaseActivity {
             materialMenu.animatePressedState(intToState(actionBarMenuState));
             return;
         }
-        super.onClick(v);
+        helper.onClick(v);
     }
 
     @Override

@@ -1,25 +1,27 @@
-package com.balysv.material.drawable.menu.demo;
+package com.balysv.materialmenu.demo.abs;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.SeekBar;
 
-import com.balysv.materialmenu.MaterialMenuIcon;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.balysv.materialmenu.demo.R;
+import com.balysv.materialmenu.extras.abs.MaterialMenuIconSherlock;
+
+import static com.balysv.materialmenu.demo.BaseActivityHelper.generateState;
+import static com.balysv.materialmenu.demo.BaseActivityHelper.intToState;
 
 
-public class HomeIconActivity extends BaseActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+public class HomeIconActivity extends BaseActivity {
 
-    private MaterialMenuIcon materialMenu;
-    private int              actionBarMenuState;
+    private MaterialMenuIconSherlock materialMenu;
+    private int                    actionBarMenuState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        materialMenu = new MaterialMenuIcon(this, Color.WHITE);
+        materialMenu = new MaterialMenuIconSherlock(this, Color.WHITE);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class HomeIconActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_icon, menu);
+        getSupportMenuInflater().inflate(R.menu.home_icon, menu);
         return true;
     }
 
