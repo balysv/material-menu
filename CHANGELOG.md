@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.2 (2014-08-29)
+
+- animatePressedState(), animateState() and setState() now cancels running transformation so you
+can spam the button and result in a correct state.
+
 Version 1.1.1 (2014-08-27)
 ----------------------------
 
