@@ -8,16 +8,16 @@ Morphing Android menu, back, dismiss and check buttons
 Including in your project
 -------------------------
 
-Import depending on ActionBar you use
+Check for latest versions at [Gradle Please][4] and import depending on ActionBar you use
 
     // stock actionBar
-    compile 'com.balysv:materialmenu:material-menu:1.1.2'
+    compile 'com.balysv.materialmenu:material-menu:1.1.2'
     
     // actionBarCompat
-    compile 'com.balysv:materialmenu:material-menu-abc:1.1.2'
+    compile 'com.balysv.materialmenu:material-menu-abc:1.1.2'
     
     // actionBarSherlock
-    compile 'com.balysv:materialmenu:material-menu-abs:1.1.2'
+    compile 'com.balysv.materialmenu:material-menu-abs:1.1.2'
 
 
 Usage
@@ -151,3 +151,4 @@ License
 [1]: https://raw.github.com/balysv/material-menu/master/art/demo.gif
 [2]: http://www.lemonlabs.co
 [3]: https://github.com/balysv/material-menu/blob/master/demo/src/stock/java/com/balysv/materialmenu/demo/stock/CustomViewActivity.java
+[4]: http://gradleplease.appspot.com/
