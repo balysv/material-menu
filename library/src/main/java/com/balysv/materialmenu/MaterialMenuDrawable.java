@@ -211,11 +211,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                     startX += strokeWidth / 2 + ratio * dip4;
                     stopX += ratio * (dip6 + dip2);
                 } else {
-                    // rotate back to start doing a 180
-                    rotation = CHECK_MIDDLE_ANGLE + (1 - ratio) * 45;
+                    // rotate back to starting angle
+                    rotation = CHECK_MIDDLE_ANGLE - CHECK_MIDDLE_ANGLE * (1 - ratio);
                     // shorten one end and lengthen the other
-                    startX += strokeWidth / 2 + dip4 + (1 - ratio) * (strokeWidth / 2 + dip5);
-                    stopX += (dip6 + dip2) + (1 - ratio) * dip2;
+                    startX += strokeWidth / 2 + dip4 - (1 - ratio) * dip3;
+                    stopX += (dip6 + dip2) - (1 - ratio) * (dip2 + dip6);
                 }
                 pivotX = width / 2 + strokeWidth * 2;
                 break;
