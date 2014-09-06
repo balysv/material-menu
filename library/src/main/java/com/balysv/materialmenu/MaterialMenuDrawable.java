@@ -483,7 +483,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
                 // shorten both ends
                 startX += dip3 - dip3 * (1 - ratio);
-                stopX -= resolveStrokeModifier(1) - dip6 * (1 - ratio);
+                stopX -= resolveStrokeModifier(1 - ratio);
                 break;
         }
 
@@ -514,17 +514,17 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private float resolveStrokeModifier(float ratio) {
         switch (stroke) {
             case REGULAR:
-                if (animationState == AnimationState.ARROW_X) {
+                if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
                     return dip3 - (dip6 * ratio);
                 }
                 return ratio * dip3;
             case THIN:
-                if (animationState == AnimationState.ARROW_X) {
-                    return dip3 + diph - ((dip6 + diph) * ratio);
+                if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
+                    return dip3 + diph - (dip6 + diph) * ratio;
                 }
                 return ratio * (dip3 + diph);
             case EXTRA_THIN:
-                if (animationState == AnimationState.ARROW_X) {
+                if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
                     return dip4 - ((dip6 + dip1) * ratio);
                 }
                 return ratio * dip4;
