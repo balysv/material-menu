@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
 /**
  * A helper class for implementing {@link MaterialMenuDrawable}
@@ -42,16 +43,16 @@ public class MaterialMenuIcon extends MaterialMenuBase {
 
     private MaterialMenuDrawable drawable;
 
-    public MaterialMenuIcon(Activity activity, int color) {
-        this(activity, color, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+    public MaterialMenuIcon(Activity activity, int color, Stroke stroke) {
+        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
     }
 
-    public MaterialMenuIcon(Activity activity, int color, int transformDuration) {
-        this(activity, color, transformDuration, DEFAULT_PRESSED_DURATION);
+    public MaterialMenuIcon(Activity activity, int color, Stroke stroke, int transformDuration) {
+        this(activity, color, stroke, transformDuration, DEFAULT_PRESSED_DURATION);
     }
 
-    public MaterialMenuIcon(Activity activity, int color, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, DEFAULT_SCALE, transformDuration, pressedDuration);
+    public MaterialMenuIcon(Activity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
+        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
         setupActionBar(activity);
     }
 

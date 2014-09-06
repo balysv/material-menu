@@ -32,6 +32,7 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURAT
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
+import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
 /**
  * A basic View wrapper of {@link MaterialMenuDrawable}. Used
@@ -43,10 +44,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
     private IconState currentState = IconState.BURGER;
 
-    private int color;
-    private int scale;
-    private int transformDuration;
-    private int pressedDuration;
+    private int    color;
+    private int    scale;
+    private int    transformDuration;
+    private int    pressedDuration;
+    private Stroke stroke;
 
     public MaterialMenuView(Context context) {
         this(context, null);
@@ -60,7 +62,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         super(context, attrs, defStyleAttr);
         initAttributes(context, attrs);
 
-        drawable = new MaterialMenuDrawable(context, color, scale, transformDuration, pressedDuration);
+        drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
         drawable.setCallback(this);
     }
 
@@ -76,6 +78,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
             scale = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_scale, DEFAULT_SCALE);
             transformDuration = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_transformDuration, DEFAULT_TRANSFORM_DURATION);
             pressedDuration = attr.getInteger(com.balysv.materialmenu.R.styleable.MaterialMenuView_pressedDuration, DEFAULT_PRESSED_DURATION);
+            stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_strokeWidth, 0));
         } finally {
             attr.recycle();
         }

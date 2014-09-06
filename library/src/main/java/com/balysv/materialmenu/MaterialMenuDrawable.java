@@ -62,6 +62,19 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         Stroke(int strokeWidth) {
             this.strokeWidth = strokeWidth;
         }
+
+        protected static Stroke valueOf(int strokeWidth) {
+            switch (strokeWidth) {
+                case 3:
+                    return REGULAR;
+                case 2:
+                    return THIN;
+                case 1:
+                    return EXTRA_THIN;
+                default:
+                    return REGULAR;
+            }
+        }
     }
 
     public static final int DEFAULT_COLOR              = Color.WHITE;
@@ -138,10 +151,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     public MaterialMenuDrawable(Context context, int color, Stroke stroke, int transformDuration, int pressedDuration) {
         this(context, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
-    }
-
-    public MaterialMenuDrawable(Context context, int color, int scale, int transformDuration, int pressedDuration) {
-        this(context, color, Stroke.REGULAR, scale, transformDuration, pressedDuration);
     }
 
     public MaterialMenuDrawable(Context context, int color, Stroke stroke, int scale, int transformDuration, int pressedDuration) {
