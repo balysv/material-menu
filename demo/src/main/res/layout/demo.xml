@@ -17,6 +17,7 @@
             android:id="@+id/material_menu_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:strokeWidth="2"
             app:color="#ffcc0000"
             app:transformDuration="3000"
             app:scale="@integer/demo_scale"/>

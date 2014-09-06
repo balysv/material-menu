@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.balysv.materialmenu.MaterialMenuIcon;
 import com.balysv.materialmenu.demo.R;
 
+import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 import static com.balysv.materialmenu.demo.BaseActivityHelper.generateState;
 import static com.balysv.materialmenu.demo.BaseActivityHelper.intToState;
 
@@ -21,7 +22,7 @@ public class HomeIconActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        materialMenu = new MaterialMenuIcon(this, Color.WHITE);
+        materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
     }
 
     @Override
