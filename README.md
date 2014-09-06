@@ -12,13 +12,13 @@ Check for latest versions at [Gradle Please][4] and import depending on ActionBa
 
 ```groovy
 // stock actionBar
-compile 'com.balysv.materialmenu:material-menu:1.1.3'
+compile 'com.balysv.materialmenu:material-menu:1.2.0'
 
 // actionBarCompat
-compile 'com.balysv.materialmenu:material-menu-abc:1.1.3'
+compile 'com.balysv.materialmenu:material-menu-abc:1.2.0'
 
 // actionBarSherlock
-compile 'com.balysv.materialmenu:material-menu-abs:1.1.3'
+compile 'com.balysv.materialmenu:material-menu-abs:1.2.0'
 ```
 
 
@@ -40,6 +40,7 @@ app:color="color"               // Color of drawable
 app:transformDuration="integer" // Transformation animation duration
 app:pressedDuration="integer"   // Pressed circle animation duration
 app:scale="integer"             // Scale factor of drawable
+app:strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
 ```
 
 ### MaterialMenuIcon
