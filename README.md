@@ -93,11 +93,14 @@ MaterialMenu.setInterpolator(Interpolator interpolator)
 
 #### Use as Action Bar icon (stock, Compat or Sherlock)
 
+Depending on the `ActionBar` you use, use one of the following classes:
+`MaterialMenuIcon`, `MaterialMenuIconCompat` or `MaterialMenuIconSherlock`.
+
 In your `Activity` add the following:
 
 ```java
 protected void onCreate(Bundle savedInstanceState) {
-    materialMenu = new MaterialMenuIcon(this, Color.WHITE);
+      materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
 }
 
 protected void onPostCreate(Bundle savedInstanceState) {
@@ -109,7 +112,7 @@ protected void onSaveInstanceState(Bundle outState) {
 }
 
 public boolean onOptionsItemSelected(MenuItem item) {
-    if (id == android.R.id.home) {
+    if (item.getId() == android.R.id.home) {
         // Handle your drawable state here
         materialMenu.animatePressedState(newState);
     }
