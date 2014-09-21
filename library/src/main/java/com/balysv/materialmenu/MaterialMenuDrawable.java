@@ -31,6 +31,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.util.Property;
 
@@ -90,7 +91,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private static final int BASE_DRAWABLE_HEIGHT = 40;
     private static final int BASE_ICON_WIDTH      = 20;
     private static final int BASE_CIRCLE_RADIUS   = 18;
-    private static final int BASE_GRID_OFFSET     = 6;
 
     private static final float ARROW_MID_LINE_ANGLE = 180;
     private static final float ARROW_TOP_LINE_ANGLE = 135;
@@ -122,18 +122,16 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private final float topPadding;
     private final float sidePadding;
     private final float circleRadius;
-    private final float gridOffset;
 
     private final Stroke stroke;
 
-    private final Paint gridPaint;
-    private final Paint iconPaint;
-    private final Paint circlePaint;
+    private final Paint gridPaint   = new Paint();
+    private final Paint iconPaint   = new Paint();
+    private final Paint circlePaint = new Paint();
 
     private float   transformationValue   = 0f;
     private float   pressedProgressValue  = 0f;
     private boolean transformationRunning = false;
-    private boolean drawGrid              = false;
 
     private IconState      currentIconState = IconState.BURGER;
     private AnimationState animationState   = AnimationState.BURGER_ARROW;
@@ -144,6 +142,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     private ObjectAnimator transformation;
     private ObjectAnimator pressedCircle;
+
+    private MaterialMenuState materialMenuState;
 
     public MaterialMenuDrawable(Context context, int color, Stroke stroke) {
         this(context, color, stroke, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
@@ -174,26 +174,53 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.sidePadding = (width - iconWidth) / 2;
         this.topPadding = (height - 5 * dip3) / 2;
 
-        this.gridOffset = dpToPx(resources, BASE_GRID_OFFSET) * scale;
-        gridPaint = new Paint();
+        initPaint(color);
+        initAnimations(transformDuration, pressedDuration);
+
+        materialMenuState = new MaterialMenuState();
+    }
+
+    private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, long pressedDuration,
+                                 int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
+    ) {
+        this.dip1 = dip1;
+        this.dip2 = dip1 * 2;
+        this.dip3 = dip1 * 3;
+        this.dip4 = dip1 * 4;
+        this.dip6 = dip1 * 6;
+        this.dip8 = dip1 * 8;
+        this.diph = dip1 / 2;
+        this.stroke = stroke;
+        this.width = width;
+        this.height = height;
+        this.iconWidth = iconWidth;
+        this.circleRadius = circleRadius;
+        this.strokeWidth = strokeWidth;
+        this.sidePadding = (width - iconWidth) / 2;
+        this.topPadding = (height - 5 * dip3) / 2;
+
+        initPaint(color);
+        initAnimations((int) transformDuration, (int) pressedDuration);
+
+        materialMenuState = new MaterialMenuState();
+    }
+
+    private void initPaint(int color) {
         gridPaint.setAntiAlias(false);
         gridPaint.setColor(Color.GREEN);
         gridPaint.setStrokeWidth(1);
 
-        iconPaint = new Paint();
         iconPaint.setAntiAlias(true);
         iconPaint.setStyle(Style.STROKE);
         iconPaint.setStrokeWidth(strokeWidth);
         iconPaint.setColor(color);
 
-        circlePaint = new Paint();
         circlePaint.setAntiAlias(true);
         circlePaint.setStyle(Style.FILL);
         circlePaint.setColor(color);
         circlePaint.setAlpha(DEFAULT_CIRCLE_ALPHA);
 
         setBounds(0, 0, width, height);
-        initAnimations(transformDuration, pressedDuration);
     }
 
     /*
@@ -201,8 +228,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
      */
 
     @Override public void draw(Canvas canvas) {
-        if (drawGrid) drawGrid(canvas);
-
         final float ratio = transformationValue <= 1 ? transformationValue : 2 - transformationValue;
         drawTopLine(canvas, ratio);
         drawMiddleLine(canvas, ratio);
@@ -492,21 +517,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         canvas.drawLine(startX, startY, stopX, stopY, iconPaint);
     }
 
-
-    private void drawGrid(Canvas canvas) {
-        for (int i = 0; i < width + 1; i += dip1) {
-            if (i % sidePadding == 0) gridPaint.setColor(Color.BLUE);
-            canvas.drawLine(i, 0, i, height, gridPaint);
-            if (i % sidePadding == 0) gridPaint.setColor(Color.GREEN);
-        }
-
-        for (int i = 0; i < height + 1; i += dip1) {
-            if (i % gridOffset == 0) gridPaint.setColor(Color.BLUE);
-            canvas.drawLine(0, i, width, i, gridPaint);
-            if (i % gridOffset == 0) gridPaint.setColor(Color.GREEN);
-        }
-    }
-
     private boolean isMorphingForward() {
         return transformationValue <= TRANSFORMATION_MID;
     }
@@ -552,10 +562,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         iconPaint.setColor(color);
         circlePaint.setColor(color);
         invalidateSelf();
-    }
-
-    protected void setDrawGrid(boolean drawGrid) {
-        this.drawGrid = drawGrid;
     }
 
     public void setTransformationDuration(int duration) {
@@ -665,7 +671,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         transformation = ObjectAnimator.ofFloat(this, transformationProperty, 0);
         transformation.setInterpolator(new DecelerateInterpolator(3));
         transformation.setDuration(transformDuration);
-        transformation.addListener(new SimpleAnimatorListener() {
+        transformation.addListener(new AnimatorListenerAdapter() {
             @Override public void onAnimationEnd(Animator animation) {
                 transformationRunning = false;
                 setIconState(animatingIconState);
@@ -676,7 +682,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         pressedCircle = ObjectAnimator.ofFloat(this, pressedProgressProperty, 0, 0);
         pressedCircle.setDuration(pressedDuration);
         pressedCircle.setInterpolator(new DecelerateInterpolator());
-        pressedCircle.addListener(new SimpleAnimatorListener() {
+        pressedCircle.addListener(new AnimatorListenerAdapter() {
             @Override public void onAnimationEnd(Animator animation) {
                 pressedProgressValue = 0;
             }
@@ -778,17 +784,38 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return height;
     }
 
-    private class SimpleAnimatorListener implements Animator.AnimatorListener {
-        @Override public void onAnimationStart(Animator animation) {
+
+    @Override
+    public ConstantState getConstantState() {
+        materialMenuState.changingConfigurations = getChangingConfigurations();
+        return materialMenuState;
+    }
+
+    @Override
+    public Drawable mutate() {
+        materialMenuState = new MaterialMenuState();
+        return this;
+    }
+
+    private final class MaterialMenuState extends ConstantState {
+        private int changingConfigurations;
+
+        private MaterialMenuState() {
         }
 
-        @Override public void onAnimationEnd(Animator animation) {
+        @Override
+        public Drawable newDrawable() {
+            MaterialMenuDrawable drawable = new MaterialMenuDrawable(
+                circlePaint.getColor(), stroke, transformation.getDuration(),
+                pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
+            );
+            drawable.setIconState(animatingIconState != null ? animatingIconState : currentIconState);
+            return drawable;
         }
 
-        @Override public void onAnimationCancel(Animator animation) {
-        }
-
-        @Override public void onAnimationRepeat(Animator animation) {
+        @Override
+        public int getChangingConfigurations() {
+            return changingConfigurations;
         }
     }
 
