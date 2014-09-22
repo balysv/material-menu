@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.2.1 (2014-09-21)
+----------------------------
+
+- BUG FIX: Added `ConstantState` to `MaterialMenuDrawable`, so it behaves correctly with Expandable ActionBar items.
+The implementation is not *correct* per se cause it doesn't provide a static `ConstantState` but it does the job.
+
 Version 1.2.0 (2014-09-09)
 ----------------------------
 

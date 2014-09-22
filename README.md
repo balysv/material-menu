@@ -12,13 +12,13 @@ Check for latest versions at [Gradle Please][4] and import depending on ActionBa
 
 ```groovy
 // stock actionBar
-compile 'com.balysv.materialmenu:material-menu:1.2.0'
+compile 'com.balysv.materialmenu:material-menu:1.2.1'
 
 // actionBarCompat
-compile 'com.balysv.materialmenu:material-menu-abc:1.2.0'
+compile 'com.balysv.materialmenu:material-menu-abc:1.2.1'
 
 // actionBarSherlock
-compile 'com.balysv.materialmenu:material-menu-abs:1.2.0'
+compile 'com.balysv.materialmenu:material-menu-abs:1.2.1'
 ```
 
 
