@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="8dp"
-        app:color="@android:color/white"/>
+        app:mm_color="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"

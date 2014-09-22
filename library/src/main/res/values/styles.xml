@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MaterialMenuView">
-        <attr name="color" format="color"/>
-        <attr name="scale" format="integer"/>
-        <attr name="transformDuration" format="integer"/>
-        <attr name="pressedDuration" format="integer"/>
-        <attr name="strokeWidth" format="integer"/>
+        <attr name="mm_color" format="color"/>
+        <attr name="mm_scale" format="integer"/>
+        <attr name="mm_transformDuration" format="integer"/>
+        <attr name="mm_pressedDuration" format="integer"/>
+        <attr name="mm_strokeWidth" format="integer"/>
     </declare-styleable>
 </resources>
