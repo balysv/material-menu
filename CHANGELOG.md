@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+Version 1.2.2 (2014-09-22)
+----------------------------
+
+- BUG FIX: Added a prefix to ambiguous xml attributes https://code.google.com/p/android/issues/detail?id=22576
+
+Now:
+```xml
+app:mm_color="color"             
+app:mm_transformDuration="integer" 
+app:mm_pressedDuration="integer"   
+app:mm_scale="integer"            
+app:mm_strokeWidth="integer" 
+```
+
 Version 1.2.1 (2014-09-21)
 ----------------------------
 

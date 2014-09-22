@@ -12,13 +12,13 @@ Check for latest versions at [Gradle Please][4] and import depending on ActionBa
 
 ```groovy
 // stock actionBar
-compile 'com.balysv.materialmenu:material-menu:1.2.1'
+compile 'com.balysv.materialmenu:material-menu:1.2.2'
 
 // actionBarCompat
-compile 'com.balysv.materialmenu:material-menu-abc:1.2.1'
+compile 'com.balysv.materialmenu:material-menu-abc:1.2.2'
 
 // actionBarSherlock
-compile 'com.balysv.materialmenu:material-menu-abs:1.2.1'
+compile 'com.balysv.materialmenu:material-menu-abs:1.2.2'
 ```
 
 
@@ -36,11 +36,11 @@ A plain old `View` that draws the icon and provides an API to manipulate its sta
 Customisation is also available through attributes:
 
 ```xml
-app:color="color"               // Color of drawable
-app:transformDuration="integer" // Transformation animation duration
-app:pressedDuration="integer"   // Pressed circle animation duration
-app:scale="integer"             // Scale factor of drawable
-app:strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
+app:mm_color="color"               // Color of drawable
+app:mm_transformDuration="integer" // Transformation animation duration
+app:mm_pressedDuration="integer"   // Pressed circle animation duration
+app:mm_scale="integer"             // Scale factor of drawable
+app:mm_strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
 ```
 
 ### MaterialMenuIcon
