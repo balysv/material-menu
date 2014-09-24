@@ -125,6 +125,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     private final Stroke stroke;
 
+    private final Object lock = new Object();
+
     private final Paint gridPaint   = new Paint();
     private final Paint iconPaint   = new Paint();
     private final Paint circlePaint = new Paint();
@@ -580,43 +582,47 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.neverDrawTouch = neverDrawTouch;
     }
 
-    public synchronized void setIconState(IconState iconState) {
-        if (transformationRunning) {
-            transformation.cancel();
-            transformationRunning = false;
-        }
+    public void setIconState(IconState iconState) {
+        synchronized (lock) {
+            if (transformationRunning) {
+                transformation.cancel();
+                transformationRunning = false;
+            }
 
-        if (currentIconState == iconState) return;
+            if (currentIconState == iconState) return;
 
-        switch (iconState) {
-            case BURGER:
-                animationState = AnimationState.BURGER_ARROW;
-                transformationValue = TRANSFORMATION_START;
-                break;
-            case ARROW:
-                animationState = AnimationState.BURGER_ARROW;
-                transformationValue = TRANSFORMATION_MID;
-                break;
-            case X:
-                animationState = AnimationState.BURGER_X;
-                transformationValue = TRANSFORMATION_MID;
-                break;
-            case CHECK:
-                animationState = AnimationState.BURGER_CHECK;
-                transformationValue = TRANSFORMATION_MID;
+            switch (iconState) {
+                case BURGER:
+                    animationState = AnimationState.BURGER_ARROW;
+                    transformationValue = TRANSFORMATION_START;
+                    break;
+                case ARROW:
+                    animationState = AnimationState.BURGER_ARROW;
+                    transformationValue = TRANSFORMATION_MID;
+                    break;
+                case X:
+                    animationState = AnimationState.BURGER_X;
+                    transformationValue = TRANSFORMATION_MID;
+                    break;
+                case CHECK:
+                    animationState = AnimationState.BURGER_CHECK;
+                    transformationValue = TRANSFORMATION_MID;
+            }
+            currentIconState = iconState;
+            invalidateSelf();
         }
-        currentIconState = iconState;
-        invalidateSelf();
     }
 
-    public synchronized void animateIconState(IconState state, boolean drawTouch) {
-        if (transformationRunning) {
-            transformation.end();
-            pressedCircle.end();
+    public void animateIconState(IconState state, boolean drawTouch) {
+        synchronized (lock) {
+            if (transformationRunning) {
+                transformation.end();
+                pressedCircle.end();
+            }
+            drawTouchCircle = drawTouch;
+            animatingIconState = state;
+            start();
         }
-        drawTouchCircle = drawTouch;
-        animatingIconState = state;
-        start();
     }
 
     /*
