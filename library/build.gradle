@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId 'com.balysv.materialmenu'
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 20
         versionCode 5
         versionName "1.2.0"
     }

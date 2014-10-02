@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 20
         versionCode 2
         versionName "1.1.0"
     }
@@ -22,7 +22,7 @@ dependencies {
     compile ('com.actionbarsherlock:actionbarsherlock:4.4.0@aar') {
         exclude group: 'com.google.android', module: 'support-v4'
     }
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:20.0.0'
 }
 
 apply from: '../maven_push.gradle'
