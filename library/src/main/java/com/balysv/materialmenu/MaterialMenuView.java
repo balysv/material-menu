@@ -87,7 +87,21 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        drawable.draw(canvas);
+        if (getPaddingLeft() != 0 || getPaddingTop() != 0) {
+            int saveCount = canvas.getSaveCount();
+            canvas.save();
+            canvas.translate(getPaddingLeft(), getPaddingTop());
+            drawable.draw(canvas);
+            canvas.restoreToCount(saveCount);
+        } else {
+            drawable.draw(canvas);
+        }
+    }
+
+    @Override
+    public void setPadding(int left, int top, int right, int bottom) {
+        super.setPadding(left, top, right, bottom);
+        adjustDrawablePadding();
     }
 
     @Override
@@ -140,13 +154,22 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int paddingX = getPaddingLeft() + getPaddingRight();
+        int paddingY = getPaddingTop() + getPaddingBottom();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(drawable.getIntrinsicWidth(), MeasureSpec.EXACTLY);
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(drawable.getIntrinsicHeight(), MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(drawable.getIntrinsicWidth() + paddingX, MeasureSpec.EXACTLY);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(drawable.getIntrinsicHeight() + paddingY, MeasureSpec.EXACTLY);
             setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         } else {
-            setMeasuredDimension(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            setMeasuredDimension(drawable.getIntrinsicWidth() + paddingX, drawable.getIntrinsicHeight() + paddingY);
         }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        adjustDrawablePadding();
     }
 
     @Override
@@ -162,6 +185,14 @@ public class MaterialMenuView extends View implements MaterialMenu {
         SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
         setState(savedState.state);
+    }
+
+    private void adjustDrawablePadding() {
+        drawable.setBounds(
+            0, 0,
+            drawable.getIntrinsicWidth() + getPaddingLeft() + getPaddingRight(),
+            drawable.getIntrinsicHeight() + getPaddingTop() + getPaddingBottom()
+        );
     }
 
     private TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
