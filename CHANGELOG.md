@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.2.3 (2014-10-05)
+----------------------------
+
+- `MaterialMenuView` now takes padding into account and position `MaterialMenuDrawable` accordingly
+
 Version 1.2.2 (2014-09-22)
 ----------------------------
 
