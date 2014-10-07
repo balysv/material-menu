@@ -188,11 +188,13 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     private void adjustDrawablePadding() {
-        drawable.setBounds(
-            0, 0,
-            drawable.getIntrinsicWidth() + getPaddingLeft() + getPaddingRight(),
-            drawable.getIntrinsicHeight() + getPaddingTop() + getPaddingBottom()
-        );
+        if (drawable != null) {
+            drawable.setBounds(
+                0, 0,
+                drawable.getIntrinsicWidth() + getPaddingLeft() + getPaddingRight(),
+                drawable.getIntrinsicHeight() + getPaddingTop() + getPaddingBottom()
+            );
+        }
     }
 
     private TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
