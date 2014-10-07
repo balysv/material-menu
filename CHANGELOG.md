@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.2.4 (2014-10-07)
+----------------------------
+
+- BUG FIX: A crash with `MaterialMenuView` inflation
+
+
 Version 1.2.3 (2014-10-05)
 ----------------------------
 
