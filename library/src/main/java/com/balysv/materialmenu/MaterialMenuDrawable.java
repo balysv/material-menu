@@ -44,6 +44,48 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         BURGER, ARROW, X, CHECK
     }
 
+    public enum AnimationState {
+        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK;
+
+        public IconState getFirstState() {
+            switch (this) {
+                case BURGER_ARROW:
+                    return IconState.BURGER;
+                case BURGER_X:
+                    return IconState.BURGER;
+                case ARROW_X:
+                    return IconState.ARROW;
+                case ARROW_CHECK:
+                    return IconState.ARROW;
+                case BURGER_CHECK:
+                    return IconState.BURGER;
+                case X_CHECK:
+                    return IconState.X;
+                default:
+                    return null;
+            }
+        }
+
+        public IconState getSecondState() {
+            switch (this) {
+                case BURGER_ARROW:
+                    return IconState.ARROW;
+                case BURGER_X:
+                    return IconState.X;
+                case ARROW_X:
+                    return IconState.X;
+                case ARROW_CHECK:
+                    return IconState.CHECK;
+                case BURGER_CHECK:
+                    return IconState.CHECK;
+                case X_CHECK:
+                    return IconState.CHECK;
+                default:
+                    return null;
+            }
+        }
+    }
+
     public enum Stroke {
         /**
          * 3 dip
@@ -73,7 +115,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 case 1:
                     return EXTRA_THIN;
                 default:
-                    return REGULAR;
+                    return THIN;
             }
         }
     }
@@ -82,10 +124,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public static final int DEFAULT_SCALE              = 1;
     public static final int DEFAULT_TRANSFORM_DURATION = 800;
     public static final int DEFAULT_PRESSED_DURATION   = 400;
-
-    private enum AnimationState {
-        BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK
-    }
 
     private static final int BASE_DRAWABLE_WIDTH  = 40;
     private static final int BASE_DRAWABLE_HEIGHT = 40;
@@ -635,6 +673,25 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             animatingIconState = state;
             start();
         }
+    }
+
+    public IconState setTransformationOffset(AnimationState animationState, float offset) {
+        if (offset < TRANSFORMATION_START || offset > TRANSFORMATION_END) {
+            throw new IllegalArgumentException(
+                String.format("Value must be between %s and %s", TRANSFORMATION_START, TRANSFORMATION_END)
+            );
+        }
+
+        this.animationState = animationState;
+
+        final boolean isFirstIcon = offset < TRANSFORMATION_MID || offset == TRANSFORMATION_END;
+
+        currentIconState = isFirstIcon ? animationState.getFirstState() : animationState.getSecondState();
+        animatingIconState = isFirstIcon ? animationState.getSecondState() : animationState.getFirstState();
+
+        setTransformationValue(offset);
+
+        return currentIconState;
     }
 
     public void setRTLEnabled(boolean rtlEnabled) {

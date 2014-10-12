@@ -146,6 +146,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     @Override
+    public void setTransformationOffset(MaterialMenuDrawable.AnimationState animationState, float value) {
+        currentState = drawable.setTransformationOffset(animationState, value);
+    }
+
+    @Override
     public MaterialMenuDrawable getDrawable() {
         return drawable;
     }

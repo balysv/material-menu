@@ -65,6 +65,10 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         getDrawable().setRTLEnabled(rtlEnabled);
     }
 
+    public final void setTransformationOffset(MaterialMenuDrawable.AnimationState animationState, float value) {
+        currentState = getDrawable().setTransformationOffset(animationState, value);
+    }
+
     public abstract MaterialMenuDrawable getDrawable();
 
     /**
