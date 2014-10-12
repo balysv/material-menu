@@ -74,6 +74,13 @@ public interface MaterialMenu {
     public void setInterpolator(Interpolator interpolator);
 
     /**
+     * Enable RTL layout. Flips all icons horizontally
+     *
+     * @param rtlEnabled true to enable RTL layout
+     */
+    public void setRTLEnabled(boolean rtlEnabled);
+
+    /**
      * @return {@link MaterialMenuDrawable} to be used for the menu
      */
     public MaterialMenuDrawable getDrawable();

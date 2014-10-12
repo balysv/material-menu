@@ -61,6 +61,10 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         getDrawable().setInterpolator(interpolator);
     }
 
+    public final void setRTLEnabled(boolean rtlEnabled) {
+        getDrawable().setRTLEnabled(rtlEnabled);
+    }
+
     public abstract MaterialMenuDrawable getDrawable();
 
     /**

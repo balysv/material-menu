@@ -141,6 +141,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private IconState animatingIconState;
     private boolean   drawTouchCircle;
     private boolean   neverDrawTouch;
+    private boolean   rtlEnabled;
 
     private ObjectAnimator transformation;
     private ObjectAnimator pressedCircle;
@@ -231,9 +232,20 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     @Override public void draw(Canvas canvas) {
         final float ratio = transformationValue <= 1 ? transformationValue : 2 - transformationValue;
+
+        if (rtlEnabled) {
+            canvas.save();
+            canvas.scale(-1, 1, 0, 0);
+            canvas.translate(-getIntrinsicWidth(), 0);
+        }
+
         drawTopLine(canvas, ratio);
         drawMiddleLine(canvas, ratio);
         drawBottomLine(canvas, ratio);
+
+        if (rtlEnabled) {
+            canvas.restore();
+        }
 
         if (drawTouchCircle) drawTouchCircle(canvas);
     }
@@ -625,6 +637,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
     }
 
+    public void setRTLEnabled(boolean rtlEnabled) {
+        this.rtlEnabled = rtlEnabled;
+        invalidateSelf();
+    }
+
     /*
      * Animations
      */
@@ -816,6 +833,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
             );
             drawable.setIconState(animatingIconState != null ? animatingIconState : currentIconState);
+            drawable.setRTLEnabled(rtlEnabled);
             return drawable;
         }
 

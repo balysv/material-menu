@@ -44,12 +44,6 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
     private IconState currentState = IconState.BURGER;
 
-    private int    color;
-    private int    scale;
-    private int    transformDuration;
-    private int    pressedDuration;
-    private Stroke stroke;
-
     public MaterialMenuView(Context context) {
         this(context, null);
     }
@@ -60,28 +54,27 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
     public MaterialMenuView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initAttributes(context, attrs);
-
-        drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
-        drawable.setCallback(this);
+        init(context, attrs);
     }
 
-    private void initAttributes(Context context, AttributeSet attributeSet) {
+    private void init(Context context, AttributeSet attributeSet) {
         TypedArray attr = getTypedArray(context, attributeSet, com.balysv.materialmenu.R.styleable.MaterialMenuView);
 
-        if (attr == null) {
-            return;
-        }
-
         try {
-            color = attr.getColor(R.styleable.MaterialMenuView_mm_color, DEFAULT_COLOR);
-            scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
-            transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
-            pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
-            stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
+            int color = attr.getColor(R.styleable.MaterialMenuView_mm_color, DEFAULT_COLOR);
+            int scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
+            int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
+            int pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
+            Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
+            boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
+
+            drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
+            drawable.setRTLEnabled(rtlEnabled);
         } finally {
             attr.recycle();
         }
+
+        drawable.setCallback(this);
     }
 
     @Override
@@ -145,6 +138,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void setInterpolator(Interpolator interpolator) {
         drawable.setInterpolator(interpolator);
+    }
+
+    @Override
+    public void setRTLEnabled(boolean rtlEnabled) {
+        drawable.setRTLEnabled(rtlEnabled);
     }
 
     @Override
