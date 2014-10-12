@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.SeekBar;
 
 import com.balysv.materialmenu.MaterialMenu;
+import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 
 import java.util.Random;
 
-import static com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
@@ -19,6 +19,7 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
     private int              materialButtonState;
     private MaterialMenu     materialIcon;
     private DrawerLayout     drawerLayout;
+    private boolean          direction;
 
     public void init(View parent, MaterialMenu actionBarIcon) {
         SeekBar duration = (SeekBar) parent.findViewById(R.id.item_animation_duration);
@@ -41,12 +42,11 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
 
         drawerLayout = ((DrawerLayout) parent.findViewById(R.id.drawer_layout));
         drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            private boolean direction = false;
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 materialIcon.setTransformationOffset(
-                    AnimationState.BURGER_ARROW,
+                    MaterialMenuDrawable.AnimationState.BURGER_ARROW,
                     direction ? 2 - slideOffset : slideOffset
                 );
             }
@@ -115,6 +115,10 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
     private void setMainState() {
         materialButtonState = generateState(materialButtonState);
         materialMenuView.animatePressedState(intToState(materialButtonState));
+    }
+
+    public void refreshDrawerState() {
+        this.direction = drawerLayout.isDrawerOpen(Gravity.START);
     }
 
     public static int generateState(int previous) {

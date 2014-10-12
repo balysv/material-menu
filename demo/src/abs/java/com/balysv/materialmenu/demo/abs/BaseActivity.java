@@ -16,4 +16,10 @@ public abstract class BaseActivity extends SherlockActivity {
         setContentView(R.layout.demo);
         helper = new BaseActivityHelper();
     }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        helper.refreshDrawerState();
+    }
 }
