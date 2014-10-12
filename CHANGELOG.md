@@ -1,6 +1,28 @@
 Change Log
 ==========
 
+Version 1.3.0 (2014-10-12)
+----------------------------
+
+- Added new API to allow manual animation to any IconState. For example when sliding a navigation drawer.
+
+Usage:
+```java
+MaterialMenu.setTransformationOffset(AnimationState state, float value)
+```
+
+where `AnimationState` is one of `BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK`
+and `value` is between `0` and `2`
+
+- Added RTL layout support. When enabled, it flips all icons horizontally.
+
+Usage: Use API `MaterialMenu.setRTLEnabled(boolean enabled)` or set an `xml` attribute `mm_rtlEnabled="boolean"`
+
+- Added new API to get current IconState.
+
+Usage: `MaterialMenu.getIconState()`
+
+
 Version 1.2.4 (2014-10-07)
 ----------------------------
 

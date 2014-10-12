@@ -12,13 +12,13 @@ Check for latest versions at [Gradle Please][4] and import depending on ActionBa
 
 ```groovy
 // stock actionBar
-compile 'com.balysv.materialmenu:material-menu:1.2.4'
+compile 'com.balysv.materialmenu:material-menu:1.3.0'
 
 // actionBarCompat
-compile 'com.balysv.materialmenu:material-menu-abc:1.2.4'
+compile 'com.balysv.materialmenu:material-menu-abc:1.3.0'
 
 // actionBarSherlock
-compile 'com.balysv.materialmenu:material-menu-abs:1.2.4'
+compile 'com.balysv.materialmenu:material-menu-abs:1.3.0'
 ```
 
 
@@ -41,6 +41,7 @@ app:mm_transformDuration="integer" // Transformation animation duration
 app:mm_pressedDuration="integer"   // Pressed circle animation duration
 app:mm_scale="integer"             // Scale factor of drawable
 app:mm_strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
+app:mm_rtlEnabled="boolean"        // Enabled RTL layout support (flips all drawables)
 ```
 
 ### MaterialMenuIcon
@@ -72,6 +73,15 @@ To change the drawable state without animation
 ```java
 MaterialMenu.setState(IconState state)
 ```
+
+To animate the drawable manually (i.e. on navigation drawer slide):
+
+```java
+MaterialMenu.setTransformationOffset(AnimationState state, float value)
+```
+
+where `AnimationState` is one of `BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK`
+and `value` is between `0` and `2`
     
 Customisation
 
@@ -87,6 +97,9 @@ MaterialMenu.setPressedDuration(int duration)
 
 // change transformation interpolator
 MaterialMenu.setInterpolator(Interpolator interpolator)
+
+// set RTL layout support
+MaterialMenu.setRTLEnabled(boolean enabled)
 ```
     
 ### Action Bar
