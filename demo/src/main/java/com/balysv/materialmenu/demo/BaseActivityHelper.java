@@ -1,20 +1,26 @@
 package com.balysv.materialmenu.demo;
 
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.SeekBar;
 
+import com.balysv.materialmenu.MaterialMenu;
 import com.balysv.materialmenu.MaterialMenuView;
 
 import java.util.Random;
 
+import static com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     private MaterialMenuView materialMenuView;
     private int              materialButtonState;
+    private MaterialMenu     materialIcon;
+    private DrawerLayout     drawerLayout;
 
-    public void init(View parent) {
+    public void init(View parent, MaterialMenu actionBarIcon) {
         SeekBar duration = (SeekBar) parent.findViewById(R.id.item_animation_duration);
         duration.setMax(4600);
         duration.setProgress(2600);
@@ -22,6 +28,7 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
 
         materialMenuView = (MaterialMenuView) parent.findViewById(R.id.material_menu_button);
         materialMenuView.setOnClickListener(this);
+        materialIcon = actionBarIcon;
 
         parent.findViewById(R.id.switch_item_arrow).setOnClickListener(this);
         parent.findViewById(R.id.switch_item_menu).setOnClickListener(this);
@@ -31,6 +38,35 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
         parent.findViewById(R.id.animate_item_menu).setOnClickListener(this);
         parent.findViewById(R.id.animate_item_x).setOnClickListener(this);
         parent.findViewById(R.id.animate_item_check).setOnClickListener(this);
+
+        drawerLayout = ((DrawerLayout) parent.findViewById(R.id.drawer_layout));
+        drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            private boolean direction = false;
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                materialIcon.setTransformationOffset(
+                    AnimationState.BURGER_ARROW,
+                    direction ? 2 - slideOffset : slideOffset
+                );
+            }
+
+            @Override
+            public void onDrawerOpened(android.view.View drawerView) {
+                direction = true;
+            }
+
+            @Override
+            public void onDrawerClosed(android.view.View drawerView) {
+                direction = false;
+            }
+        });
+
+        drawerLayout.postDelayed(new Runnable() {
+            @Override public void run() {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        }, 1500);
     }
 
     @Override public void onClick(View v) {

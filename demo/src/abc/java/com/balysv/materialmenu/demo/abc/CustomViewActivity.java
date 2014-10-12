@@ -22,6 +22,7 @@ public class CustomViewActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initCustomActionBar();
+        helper.init(getWindow().getDecorView(), materialMenu);
     }
 
     private void initCustomActionBar() {

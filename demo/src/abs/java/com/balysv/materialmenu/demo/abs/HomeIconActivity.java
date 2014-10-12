@@ -23,6 +23,7 @@ public class HomeIconActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         materialMenu = new MaterialMenuIconSherlock(this, Color.WHITE, Stroke.THIN);
+        helper.init(getWindow().getDecorView(), materialMenu);
     }
 
     @Override

@@ -29,4 +29,6 @@ dependencies {
     compile project(':library')
     absCompile project(':extras-abs')
     abcCompile project(':extras-abc')
+
+    compile 'com.android.support:support-v4:20.0.0'
 }

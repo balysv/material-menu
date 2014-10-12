@@ -15,6 +15,5 @@ public abstract class BaseActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.demo);
         helper = new BaseActivityHelper();
-        helper.init(getWindow().getDecorView());
     }
 }
