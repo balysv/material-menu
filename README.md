@@ -84,7 +84,9 @@ MaterialMenu.setTransformationOffset(AnimationState state, float value)
 where `AnimationState` is one of `BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK`
 and `value` is between `0` and `2`
     
-Customisation
+**Note:** The current implementation resolves its state by current offset value. Make sure you use `offset` between `0` and `1` for forward animation and `1` and `2` for backwards to correctly save icon state on activity recreation.
+    
+### Customisation
 
 ```java
 // change color
