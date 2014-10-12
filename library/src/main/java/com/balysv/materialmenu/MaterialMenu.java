@@ -32,6 +32,13 @@ public interface MaterialMenu {
     public void setState(IconState state);
 
     /**
+     * Return current icon state
+     *
+     * @return icon state
+     */
+    public IconState getState();
+
+    /**
      * Animate icon to given state.
      *
      * @param state new icon state

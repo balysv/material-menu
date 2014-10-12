@@ -699,6 +699,10 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         invalidateSelf();
     }
 
+    public IconState getIconState() {
+        return currentIconState;
+    }
+
     /*
      * Animations
      */

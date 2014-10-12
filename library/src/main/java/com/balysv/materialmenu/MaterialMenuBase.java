@@ -35,6 +35,10 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         getDrawable().setIconState(state);
     }
 
+    public final MaterialMenuDrawable.IconState getState() {
+        return getDrawable().getIconState();
+    }
+
     public final void animateState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().animateIconState(state, false);

@@ -109,6 +109,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     @Override
+    public IconState getState() {
+        return drawable.getIconState();
+    }
+
+    @Override
     public void animateState(IconState state) {
         currentState = state;
         drawable.animateIconState(state, false);
