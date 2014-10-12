@@ -30,45 +30,55 @@ public abstract class MaterialMenuBase implements MaterialMenu {
 
     protected MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
 
+    @Override
     public final void setState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().setIconState(state);
     }
 
+    @Override
     public final MaterialMenuDrawable.IconState getState() {
         return getDrawable().getIconState();
     }
 
+    @Override
     public final void animateState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().animateIconState(state, false);
     }
 
+    @Override
     public final void animatePressedState(MaterialMenuDrawable.IconState state) {
         currentState = state;
         getDrawable().animateIconState(state, true);
     }
 
+    @Override
     public final void setColor(int color) {
         getDrawable().setColor(color);
     }
 
+    @Override
     public final void setTransformationDuration(int duration) {
         getDrawable().setTransformationDuration(duration);
     }
 
+    @Override
     public final void setPressedDuration(int duration) {
         getDrawable().setPressedDuration(duration);
     }
 
+    @Override
     public final void setInterpolator(Interpolator interpolator) {
         getDrawable().setInterpolator(interpolator);
     }
 
+    @Override
     public final void setRTLEnabled(boolean rtlEnabled) {
         getDrawable().setRTLEnabled(rtlEnabled);
     }
 
+    @Override
     public final void setTransformationOffset(MaterialMenuDrawable.AnimationState animationState, float value) {
         currentState = getDrawable().setTransformationOffset(animationState, value);
     }
