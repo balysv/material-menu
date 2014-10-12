@@ -12,13 +12,13 @@ Check for latest versions at [Gradle Please][4] and import depending on ActionBa
 
 ```groovy
 // stock actionBar
-compile 'com.balysv.materialmenu:material-menu:1.3.0'
+compile 'com.balysv.materialmenu:material-menu:1.x.x'
 
 // actionBarCompat
-compile 'com.balysv.materialmenu:material-menu-abc:1.3.0'
+compile 'com.balysv.materialmenu:material-menu-abc:1.x.x'
 
 // actionBarSherlock
-compile 'com.balysv.materialmenu:material-menu-abs:1.3.0'
+compile 'com.balysv.materialmenu:material-menu-abs:1.x.x'
 ```
 
 
@@ -166,7 +166,7 @@ See [source of Demo][3] for details
 
 Developed By
 --------------------
-Balys Valentukevicius - <balys.v@gmail.com> @ [Lemon Labs][2]
+Balys Valentukevicius @ [Lemon Labs][2]
 
 License
 -----------
