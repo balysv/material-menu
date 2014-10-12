@@ -21,6 +21,7 @@ compile 'com.balysv.materialmenu:material-menu-abc:1.x.x'
 compile 'com.balysv.materialmenu:material-menu-abs:1.x.x'
 ```
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.balysv.materialmenu/material-menu/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.balysv.materialmenu/material-menu)
 
 Usage
 -----
