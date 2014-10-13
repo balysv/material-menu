@@ -21,11 +21,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.view.View;
-import android.view.ViewGroup;
 
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
 /**
@@ -41,42 +37,41 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
  */
 public class MaterialMenuIcon extends MaterialMenuBase {
 
-    private MaterialMenuDrawable drawable;
-
     public MaterialMenuIcon(Activity activity, int color, Stroke stroke) {
-        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+        super(activity, color, stroke);
     }
 
     public MaterialMenuIcon(Activity activity, int color, Stroke stroke, int transformDuration) {
-        this(activity, color, stroke, transformDuration, DEFAULT_PRESSED_DURATION);
+        super(activity, color, stroke, transformDuration);
     }
 
     public MaterialMenuIcon(Activity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
-        setupActionBar(activity);
+        super(activity, color, stroke, transformDuration, pressedDuration);
     }
 
-    @TargetApi(14)
-    private void setupActionBar(Activity activity) {
+    @Override
+    protected View getActionBarHomeView(Activity activity) {
         Resources resources = activity.getResources();
-        int id = resources.getIdentifier("android:id/home", null, null);
-        View view = activity.getWindow().getDecorView().findViewById(id);
-        if (view == null) throw new IllegalStateException("Could not find ActionBar icon view");
+        return activity.getWindow().getDecorView().findViewById(
+            resources.getIdentifier("android:id/home", null, null)
+        );
+    }
 
-        // need no margins so that clicked state would work nicely
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        params.bottomMargin = 0;
-        params.topMargin = 0;
+    @Override
+    protected View getActionBarUpView(Activity activity) {
+        Resources resources = activity.getResources();
+        return activity.getWindow().getDecorView().findViewById(
+            resources.getIdentifier("android:id/up", null, null)
+        );
+    }
 
+
+    @Override @TargetApi(14)
+    protected void setActionBarSettings(Activity activity) {
         ActionBar actionBar = activity.getActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setIcon(drawable);
-    }
-
-    @Override
-    public MaterialMenuDrawable getDrawable() {
-        return drawable;
+        actionBar.setIcon(getDrawable());
     }
 }

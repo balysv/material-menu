@@ -16,6 +16,7 @@
 
 package com.balysv.materialmenu.extras.abs;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Build;
 import android.view.View;
@@ -24,11 +25,7 @@ import android.view.ViewGroup;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.balysv.materialmenu.MaterialMenuBase;
-import com.balysv.materialmenu.MaterialMenuDrawable;
 
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
 /**
@@ -44,47 +41,48 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
  */
 public class MaterialMenuIconSherlock extends MaterialMenuBase {
 
-    private MaterialMenuDrawable drawable;
-
     public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke) {
-        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+        super(activity, color, stroke);
     }
 
     public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke, int transformDuration) {
-        this(activity, color, stroke, transformDuration, DEFAULT_PRESSED_DURATION);
+        super(activity, color, stroke, transformDuration);
     }
 
     public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
-        setupActionBar(activity);
-    }
-
-    private void setupActionBar(SherlockActivity activity) {
-        View view;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            Resources resources = activity.getResources();
-            int id = resources.getIdentifier("android:id/home", null, null);
-            view = activity.getWindow().getDecorView().findViewById(id);
-        } else {
-            view = activity.getWindow().getDecorView().findViewById(R.id.abs__home);
-        }
-
-        if (view == null) throw new IllegalStateException("Could not find ActionBar icon view");
-
-        // need no margins so that clicked state would work nicely
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        params.bottomMargin = 0;
-        params.topMargin = 0;
-
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setIcon(drawable);
+        super(activity, color, stroke, transformDuration, pressedDuration);
     }
 
     @Override
-    public MaterialMenuDrawable getDrawable() {
-        return drawable;
+    protected View getActionBarHomeView(Activity activity) {
+        Resources resources = activity.getResources();
+        return activity.getWindow().getDecorView().findViewById(
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+                ? resources.getIdentifier("android:id/home", null, null)
+                : R.id.abs__home
+        );
+    }
+
+    @Override
+    protected View getActionBarUpView(Activity activity) {
+        Resources resources = activity.getResources();
+        View decorView = activity.getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            return decorView.findViewById(resources.getIdentifier("android:id/up", null, null));
+        } else {
+            // there are duplicate up ids; extract it from non expanded action bar view
+            ViewGroup actionBarView = (ViewGroup) decorView.findViewById(R.id.abs__action_bar);
+            View homeView = actionBarView.getChildAt(1);
+            return homeView.findViewById(R.id.abs__up);
+        }
+    }
+
+    @Override
+    protected void setActionBarSettings(Activity activity) {
+        ActionBar actionBar = ((SherlockActivity) activity).getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setIcon(getDrawable());
     }
 }

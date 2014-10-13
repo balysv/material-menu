@@ -16,8 +16,15 @@
 
 package com.balysv.materialmenu;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Interpolator;
+
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 
 /**
  * Base class for ActionBar implementations of {@link MaterialMenuDrawable}
@@ -28,7 +35,48 @@ public abstract class MaterialMenuBase implements MaterialMenu {
 
     private static final String STATE_KEY = "material_menu_icon_state";
 
-    protected MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
+    private MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
+
+    private MaterialMenuDrawable drawable;
+
+    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke) {
+        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+    }
+
+    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration) {
+        this(activity, color, stroke, transformDuration, DEFAULT_PRESSED_DURATION);
+    }
+
+    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
+        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
+        setActionBarSettings(activity);
+        setupActionBar(activity);
+    }
+
+    private void setupActionBar(Activity activity) {
+        final View iconView = getActionBarHomeView(activity);
+        final View upView = getActionBarUpView(activity);
+
+        if (iconView == null || upView == null) throw new IllegalStateException("Could not find ActionBar views");
+
+        // need no margins so that clicked state would work nicely
+        ViewGroup.MarginLayoutParams iconParams = (ViewGroup.MarginLayoutParams) iconView.getLayoutParams();
+        iconParams.bottomMargin = 0;
+        iconParams.topMargin = 0;
+        iconView.setLayoutParams(iconParams);
+
+        // remove up arrow margins
+        ViewGroup.MarginLayoutParams upParams = (ViewGroup.MarginLayoutParams) upView.getLayoutParams();
+        upParams.leftMargin = activity.getResources().getDimensionPixelSize(R.dimen.mm_up_arrow_margin);
+        upParams.rightMargin = 0;
+        upView.setLayoutParams(upParams);
+    }
+
+    protected abstract void setActionBarSettings(Activity activity);
+
+    protected abstract View getActionBarHomeView(Activity activity);
+
+    protected abstract View getActionBarUpView(Activity activity);
 
     @Override
     public final void setState(MaterialMenuDrawable.IconState state) {
@@ -83,7 +131,10 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         currentState = getDrawable().setTransformationOffset(animationState, value);
     }
 
-    public abstract MaterialMenuDrawable getDrawable();
+    @Override
+    public final MaterialMenuDrawable getDrawable() {
+        return drawable;
+    }
 
     /**
      * Overwrites behaviour of pressed state circle animation even when using {@link #animatePressedState(com.balysv.materialmenu.MaterialMenuDrawable.IconState)}
