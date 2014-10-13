@@ -2,8 +2,6 @@ package com.balysv.materialmenu.demo.abs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -37,13 +35,6 @@ public class CustomViewActivity extends BaseActivity implements View.OnClickList
         actionBar.setCustomView(R.layout.action_bar);
         materialMenu = (MaterialMenuView) actionBar.getCustomView().findViewById(R.id.action_bar_menu);
         materialMenu.setOnClickListener(this);
-        new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                Log.i("debug", "size: " + materialMenu.getMeasuredWidth() + " " + materialMenu.getMeasuredHeight());
-                Log.i("debug", "size: " + materialMenu.getWidth() + " " + materialMenu.getHeight());
-            }
-        }, 2000);
-
     }
 
     @Override public void onClick(View v) {
