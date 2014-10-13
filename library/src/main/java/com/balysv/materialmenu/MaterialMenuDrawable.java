@@ -845,8 +845,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     @Override public void stop() {
-        if (!isRunning()) return;
-        if (transformation.isRunning()) {
+        if (isRunning() && transformation.isRunning()) {
             transformation.end();
         } else {
             transformationRunning = false;
