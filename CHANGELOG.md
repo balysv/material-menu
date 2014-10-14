@@ -1,6 +1,24 @@
 Change Log
 ==========
 
+Version 1.3.1 (2014-10-14)
+----------------------------
+
+- UI fix: Remove up arrow indicator margins when using `MaterialMenuIcon` since
+you could see some extra space on the left side of the icon.
+If a different margin is required, find the 'Home' view of the ActionBar and apply them
+(example for stock ActionBar) :
+
+```java
+View view = activity.getWindow().getDecorView().findViewById(
+    resources.getIdentifier("android:id/home", null, null)
+);
+ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+params.leftMargin = someMargin;
+```
+
+- `MaterialMenuBase` abstraction improvements
+
 Version 1.3.0 (2014-10-12)
 ----------------------------
 
