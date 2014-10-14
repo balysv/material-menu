@@ -30,9 +30,7 @@ compile 'com.balysv.materialmenu:material-menu-abs:1.x.x'
 Usage
 -----
 
-Generally, you should use `MaterialMenuDrawable` as a standalone drawable in your custom views, etc.
-
-The library provides two wrappers that might ease implementation:
+The library provides two wrappers of `MaterialMenuDrawable` that eases implementation into the ActionBar, NavigationDrawer slide interaction or into any other custom layout.
 
 ### MaterialMenuView
 
@@ -138,6 +136,57 @@ public boolean onOptionsItemSelected(MenuItem item) {
     }
 }
 ```
+
+#### Use in custom Action Bar view
+
+Simply add `MaterialMenuView` in your custom layout and register an `OnClickListener` to do the
+transformations. 
+
+See [source of Demo][2] for details
+
+#### NavigationDrawer slide interaction
+
+Implement `MaterialMenu` into your ActionBar as described above and add a custom `DrawerListener`:
+
+```java
+
+private DrawerLayout drawerLayout;
+private boolean      isDrawerOpened;
+
+protected void onCreate(Bundle savedInstanceState) {
+    materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN); // or retrieve from your custom view, etc
+    drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+            materialMenu.setTransformationOffset(
+                MaterialMenuDrawable.AnimationState.BURGER_ARROW,
+                isDrawerOpened ? 2 - slideOffset : slideOffset
+            );
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            isDrawerOpened = true;
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+            isDrawerOpened = false;
+        }
+}
+
+protected void onPostCreate(Bundle savedInstanceState) {
+    isDrawerOpened = drawerLayout.isDrawerOpen(Gravity.START); // or END, LEFT, RIGHT
+    materialMenu.syncState(savedInstanceState);
+}
+
+protected void onSaveInstanceState(Bundle outState) {
+    materialMenu.onSaveInstanceState(outState);
+}
+```
+
+### Circle pressed state
     
 In order to use the new *Material* circle pressed state, you have to disable ActionBar item backgrounds in your theme and 
 re-enable it for other menu icons
@@ -163,13 +212,6 @@ Otherwise, to disable circle pressed state use
 ```java
 MaterialMenu.setNeverDrawTouch(true)
 ```
-
-#### Use in custom Action Bar view
-
-Simply add `MaterialMenuView` in your custom layout and register an `OnClickListener` to do the
-transformations. 
-
-See [source of Demo][2] for details
 
 Developed By
 --------------------
