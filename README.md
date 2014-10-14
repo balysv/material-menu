@@ -3,12 +3,16 @@ Material Menu
 
 Morphing Android menu, back, dismiss and check buttons
 
-![Demo Image][1]
+![Demo Image](https://raw.github.com/balysv/material-menu/master/art/demo.gif)
+
+Have full control of the animation:
+
+![Demo Drawer](https://raw.github.com/balysv/material-menu/master/art/demo_drawer.gif)
 
 Including in your project
 -------------------------
 
-Check for latest versions at [Gradle Please][4] and import depending on ActionBar you use
+Check for latest versions at [Gradle Please][3] and import depending on ActionBar you use
 
 ```groovy
 // stock actionBar
@@ -165,11 +169,11 @@ MaterialMenu.setNeverDrawTouch(true)
 Simply add `MaterialMenuView` in your custom layout and register an `OnClickListener` to do the
 transformations. 
 
-See [source of Demo][3] for details
+See [source of Demo][2] for details
 
 Developed By
 --------------------
-Balys Valentukevicius @ [Lemon Labs][2]
+Balys Valentukevicius @ [Lemon Labs][1]
 
 License
 -----------
@@ -189,8 +193,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-    
-[1]: https://raw.github.com/balysv/material-menu/master/art/demo.gif
-[2]: http://www.lemonlabs.co
-[3]: https://github.com/balysv/material-menu/blob/master/demo/src/stock/java/com/balysv/materialmenu/demo/stock/CustomViewActivity.java
-[4]: http://gradleplease.appspot.com/
+
+[1]: http://www.lemonlabs.co
+[2]: https://github.com/balysv/material-menu/blob/master/demo/src/stock/java/com/balysv/materialmenu/demo/stock/CustomViewActivity.java
+[3]: http://gradleplease.appspot.com/
