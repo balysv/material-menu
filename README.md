@@ -118,14 +118,17 @@ In your `Activity` add the following:
 
 ```java
 protected void onCreate(Bundle savedInstanceState) {
-      materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
+    super.onCreate(savedInstanceState);
+    materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
 }
 
 protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
     materialMenu.syncState(savedInstanceState);
 }
 
 protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
     materialMenu.onSaveInstanceState(outState);
 }
 
@@ -155,6 +158,7 @@ private MaterialMenuIcon materialMenu;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
     materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN); // or retrieve from your custom view, etc
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
