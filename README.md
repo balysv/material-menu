@@ -149,10 +149,11 @@ See [source of Demo][2] for details
 Implement `MaterialMenu` into your ActionBar as described above and add a custom `DrawerListener`:
 
 ```java
-
 private DrawerLayout drawerLayout;
 private boolean      isDrawerOpened;
+private MaterialMenuIcon materialMenu;
 
+@Override
 protected void onCreate(Bundle savedInstanceState) {
     materialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN); // or retrieve from your custom view, etc
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -174,14 +175,20 @@ protected void onCreate(Bundle savedInstanceState) {
         public void onDrawerClosed(View drawerView) {
             isDrawerOpened = false;
         }
+    });
 }
 
+
+@Override
 protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
     isDrawerOpened = drawerLayout.isDrawerOpen(Gravity.START); // or END, LEFT, RIGHT
     materialMenu.syncState(savedInstanceState);
 }
 
+@Override
 protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
     materialMenu.onSaveInstanceState(outState);
 }
 ```
