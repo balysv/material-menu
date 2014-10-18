@@ -1,1 +1,1 @@
-include ':demo', ':library', ':extras-abc', ':extras-abs'
+include ':demo', ':library', ':extras-abc', ':extras-abs', ':extras-toolbar'

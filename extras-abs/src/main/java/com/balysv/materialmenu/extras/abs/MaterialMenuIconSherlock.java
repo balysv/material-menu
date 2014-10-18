@@ -78,6 +78,11 @@ public class MaterialMenuIconSherlock extends MaterialMenuBase {
     }
 
     @Override
+    protected boolean providesActionBar() {
+        return false;
+    }
+
+    @Override
     protected void setActionBarSettings(Activity activity) {
         ActionBar actionBar = ((SherlockActivity) activity).getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);

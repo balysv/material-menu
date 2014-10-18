@@ -50,14 +50,18 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
         drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
         setActionBarSettings(activity);
-        setupActionBar(activity);
+        if (providesActionBar()) {
+            setupActionBar(activity);
+        }
     }
 
     private void setupActionBar(Activity activity) {
         final View iconView = getActionBarHomeView(activity);
         final View upView = getActionBarUpView(activity);
 
-        if (iconView == null || upView == null) throw new IllegalStateException("Could not find ActionBar views");
+        if (iconView == null || upView == null) {
+            throw new IllegalStateException("Could not find ActionBar views");
+        }
 
         // need no margins so that clicked state would work nicely
         ViewGroup.MarginLayoutParams iconParams = (ViewGroup.MarginLayoutParams) iconView.getLayoutParams();
@@ -77,6 +81,8 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     protected abstract View getActionBarHomeView(Activity activity);
 
     protected abstract View getActionBarUpView(Activity activity);
+
+    protected abstract boolean providesActionBar();
 
     @Override
     public final void setState(MaterialMenuDrawable.IconState state) {

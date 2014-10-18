@@ -65,6 +65,10 @@ public class MaterialMenuIcon extends MaterialMenuBase {
         );
     }
 
+    @Override
+    protected boolean providesActionBar() {
+        return true;
+    }
 
     @Override @TargetApi(14)
     protected void setActionBarSettings(Activity activity) {

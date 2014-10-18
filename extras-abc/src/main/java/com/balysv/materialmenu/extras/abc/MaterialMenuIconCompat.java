@@ -78,6 +78,11 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
     }
 
     @Override
+    protected boolean providesActionBar() {
+        return true;
+    }
+
+    @Override
     protected void setActionBarSettings(Activity activity) {
         ActionBar actionBar = ((ActionBarActivity) activity).getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
