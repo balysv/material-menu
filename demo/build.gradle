@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.0.1"
 
     defaultConfig {
         applicationId "com.balysv.materialmenu.demo"
         minSdkVersion 9
-        targetSdkVersion 20
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -22,6 +22,9 @@ android {
         abs {
             applicationId "com.balysv.materialmenu.demo.abs"
         }
+        toolbar {
+            applicationId "com.balysv.materialmenu.demo.toolbar"
+        }
     }
 }
 
@@ -29,6 +32,7 @@ dependencies {
     compile project(':library')
     absCompile project(':extras-abs')
     abcCompile project(':extras-abc')
+    toolbarCompile project(':extras-toolbar');
 
-    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:support-v4:21.0.0'
 }

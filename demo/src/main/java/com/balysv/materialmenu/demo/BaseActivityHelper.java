@@ -1,5 +1,6 @@
 package com.balysv.materialmenu.demo;
 
+import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -41,6 +42,7 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
         parent.findViewById(R.id.animate_item_check).setOnClickListener(this);
 
         drawerLayout = ((DrawerLayout) parent.findViewById(R.id.drawer_layout));
+        drawerLayout.setScrimColor(Color.parseColor("#66000000"));
         drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
 
             @Override
