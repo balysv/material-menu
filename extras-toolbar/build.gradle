@@ -5,7 +5,6 @@ android {
     buildToolsVersion "21.0.1"
 
     defaultConfig {
-        applicationId "com.balysv.materialmenu.extras.toolbar"
         minSdkVersion 9
         targetSdkVersion 21
         versionCode 1
@@ -22,3 +21,5 @@ dependencies {
     compile project(':library')
     compile 'com.android.support:appcompat-v7:21.0.0'
 }
+
+apply from: '../maven_push.gradle'

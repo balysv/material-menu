@@ -18,7 +18,10 @@ Check for latest versions at [Gradle Please][3] and import depending on ActionBa
 // stock actionBar
 compile 'com.balysv.materialmenu:material-menu:1.x.x'
 
-// actionBarCompat
+// Toolbar (includes support-v7:21.0.x)
+compile 'com.balysv.materialmenu:material-menu-toolbar:1.x.x'
+
+// actionBarCompat (up to support-v7:20.0.0 - does not support Toolbar)
 compile 'com.balysv.materialmenu:material-menu-abc:1.x.x'
 
 // actionBarSherlock
@@ -137,6 +140,69 @@ public boolean onOptionsItemSelected(MenuItem item) {
         // Handle your drawable state here
         materialMenu.animatePressedState(newState);
     }
+}
+```
+
+#### Use in Toolbar
+
+Use it as a standalone drawable. Note: you have to handle icon state yourself:
+
+```java
+private MaterialMenuDrawable materialMenu;
+
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.toolbar);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+        // Handle your drawable state here
+        materialMenu.animatePressedState(newState);
+        }
+    });
+    materialMenu = new MaterialMenuDrawable(this, Color.WHITE, Stroke.THIN);
+    toolbar.setNavigationIcon(materialMenu);
+    materialMenu.setNeverDrawTouch(true);
+}
+```
+
+OR
+
+Use `MaterialMenuIconToolbar` which handles saved state:
+
+```java
+private MaterialMenuIconToolbar materialMenu;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.toolbar);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+        // Handle your drawable state here
+        materialMenu.animatePressedState(newState);
+        }
+    });
+    materialMenu = new MaterialMenuIconToolbar(this, Color.WHITE, Stroke.THIN) {
+        @Override public int getToolbarViewId() {
+            return R.id.toolbar;
+        }
+    };
+    materialMenu.setNeverDrawTouch(true);
+}
+
+@Override
+protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    materialMenu.syncState(savedInstanceState);
+}
+
+@Override protected void onSaveInstanceState(Bundle outState) {
+    materialMenu.onSaveInstanceState(outState);
+    super.onSaveInstanceState(outState);
 }
 ```
 

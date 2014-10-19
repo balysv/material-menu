@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+Version 1.4.0 (2014-10-19)
+
+- Added EXTRAS: Toolbar support for `MaterialMenuIcon`.
+
+Usage:
+
+import `com.balysv.materialmenu:material-menu-toolbar:1.x.x` and use `MaterielMenuIconToolbar`
+
+- BUG FIX: left margin fix for Jellybean and ICS devices using `MaterialMenuIcon`
+
 Version 1.3.1 (2014-10-14)
 ----------------------------
 
