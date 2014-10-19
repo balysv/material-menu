@@ -52,7 +52,12 @@ app:mm_rtlEnabled="boolean"        // Enabled RTL layout support (flips all draw
 
 ### MaterialMenuIcon
 
-A POJO that initializes the drawable and replaces the ActionBar icon. See usage in **ActionBar** below
+A POJO that initializes the drawable and replaces the ActionBar icon.
+
+Jump to instructions for :
+- [ActionBar (stock, Sherlock, Compat)]( https://github.com/balysv/material-menu#use-as-action-bar-icon-stock-compat-or-sherlock)
+- [Toolbar](https://github.com/balysv/material-menu#use-in-toolbar)
+- [NavigationDrawer interaction ](https://github.com/balysv/material-menu#navigationdrawer-slide-interaction)
 
 ## API
 
