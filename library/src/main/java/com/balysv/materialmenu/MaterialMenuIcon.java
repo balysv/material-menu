@@ -21,6 +21,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.view.View;
+import android.view.ViewGroup;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
@@ -60,7 +61,13 @@ public class MaterialMenuIcon extends MaterialMenuBase {
     @Override
     protected View getActionBarUpView(Activity activity) {
         Resources resources = activity.getResources();
-        return activity.getWindow().getDecorView().findViewById(
+        ViewGroup actionBarView = (ViewGroup) activity.getWindow().getDecorView().findViewById(
+            resources.getIdentifier("android:id/action_bar", null, null)
+        );
+        View homeView = actionBarView.getChildAt(
+            actionBarView.getChildCount() > 1 ? 1 : 0
+        );
+        return homeView.findViewById(
             resources.getIdentifier("android:id/up", null, null)
         );
     }

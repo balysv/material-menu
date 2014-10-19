@@ -68,7 +68,15 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
         Resources resources = activity.getResources();
         View decorView = activity.getWindow().getDecorView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return decorView.findViewById(resources.getIdentifier("android:id/up", null, null));
+            ViewGroup actionBarView = (ViewGroup) activity.getWindow().getDecorView().findViewById(
+                resources.getIdentifier("android:id/action_bar", null, null)
+            );
+            View homeView = actionBarView.getChildAt(
+                actionBarView.getChildCount() > 1 ? 1 : 0
+            );
+            return homeView.findViewById(
+                resources.getIdentifier("android:id/up", null, null)
+            );
         } else {
             // there are duplicate up ids; extract it from non expanded action bar view
             ViewGroup actionBarView = (ViewGroup) decorView.findViewById(R.id.action_bar);

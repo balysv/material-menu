@@ -67,6 +67,7 @@ public abstract class MaterialMenuBase implements MaterialMenu {
         ViewGroup.MarginLayoutParams iconParams = (ViewGroup.MarginLayoutParams) iconView.getLayoutParams();
         iconParams.bottomMargin = 0;
         iconParams.topMargin = 0;
+        iconParams.leftMargin = 0;
         iconView.setLayoutParams(iconParams);
 
         // remove up arrow margins
