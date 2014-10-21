@@ -12,7 +12,6 @@ Have full control of the animation:
 Including in your project
 -------------------------
 
-Check for latest versions at [Gradle Please][3] and import depending on ActionBar you use
 
 ```groovy
 // stock actionBar
@@ -27,6 +26,8 @@ compile 'com.balysv.materialmenu:material-menu-abc:1.x.x'
 // actionBarSherlock
 compile 'com.balysv.materialmenu:material-menu-abs:1.x.x'
 ```
+
+Check for latest version number on the widget below or visit [Releases](https://github.com/balysv/material-menu/releases)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.balysv.materialmenu/material-menu/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.balysv.materialmenu/material-menu)
 
