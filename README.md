@@ -251,6 +251,14 @@ protected void onCreate(Bundle savedInstanceState) {
         public void onDrawerClosed(View drawerView) {
             isDrawerOpened = false;
         }
+        
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            if(newState == DrawerLayout.STATE_IDLE) {
+                if(isDrawerOpened) menu.setState(MaterialMenuDrawable.IconState.ARROW)
+                else menu.setState(MaterialMenuDrawable.IconState.BURGER)
+            }
+        }
     });
 }
 
