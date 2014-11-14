@@ -17,10 +17,10 @@ Including in your project
 // stock actionBar
 compile 'com.balysv.materialmenu:material-menu:1.x.x'
 
-// Toolbar (includes support-v7:21.0.x)
+// Toolbar and ActionBarCompat-v21 (includes support-v7:21.0.x)
 compile 'com.balysv.materialmenu:material-menu-toolbar:1.x.x'
 
-// actionBarCompat (up to support-v7:20.0.0 - does not support Toolbar)
+// actionBarCompat-v20 (up to support-v7:20.0.0 - does not support Toolbar)
 compile 'com.balysv.materialmenu:material-menu-abc:1.x.x'
 
 // actionBarSherlock
