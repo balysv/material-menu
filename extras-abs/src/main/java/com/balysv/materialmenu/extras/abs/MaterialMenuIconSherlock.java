@@ -24,6 +24,9 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.balysv.materialmenu.MaterialMenuBase;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
@@ -41,15 +44,15 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
  */
 public class MaterialMenuIconSherlock extends MaterialMenuBase {
 
-    public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke) {
+    public MaterialMenuIconSherlock(Activity activity, int color, Stroke stroke) {
         super(activity, color, stroke);
     }
 
-    public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke, int transformDuration) {
+    public MaterialMenuIconSherlock(Activity activity, int color, Stroke stroke, int transformDuration) {
         super(activity, color, stroke, transformDuration);
     }
 
-    public MaterialMenuIconSherlock(SherlockActivity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
+    public MaterialMenuIconSherlock(Activity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
         super(activity, color, stroke, transformDuration, pressedDuration);
     }
 
@@ -87,12 +90,26 @@ public class MaterialMenuIconSherlock extends MaterialMenuBase {
 
     @Override
     protected boolean providesActionBar() {
-        return false;
+        return true;
     }
 
     @Override
     protected void setActionBarSettings(Activity activity) {
-        ActionBar actionBar = ((SherlockActivity) activity).getSupportActionBar();
+        ActionBar actionBar;
+        if (activity instanceof SherlockActivity) {
+            actionBar = ((SherlockActivity) activity).getSupportActionBar();
+        } else if (activity instanceof SherlockListActivity) {
+            actionBar = ((SherlockListActivity) activity).getSupportActionBar();
+        } else if (activity instanceof SherlockFragmentActivity) {
+            actionBar = ((SherlockFragmentActivity) activity).getSupportActionBar();
+        } else if (activity instanceof SherlockPreferenceActivity) {
+            actionBar = ((SherlockPreferenceActivity) activity).getSupportActionBar();
+        } else {
+            throw new IllegalArgumentException(
+                "Activity must extend SherlockActivity, SherlockListActivity," +
+                    "SherlockFragmentActivity or SherlockPreferenceActivity"
+            );
+        }
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(false);
