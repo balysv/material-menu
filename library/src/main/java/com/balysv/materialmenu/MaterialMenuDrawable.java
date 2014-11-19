@@ -165,7 +165,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     private final Object lock = new Object();
 
-    private final Paint gridPaint   = new Paint();
     private final Paint iconPaint   = new Paint();
     private final Paint circlePaint = new Paint();
 
@@ -222,7 +221,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, long pressedDuration,
-	int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
+        int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
     ) {
         this.dip1 = dip1;
         this.dip2 = dip1 * 2;
@@ -247,10 +246,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     private void initPaint(int color) {
-        gridPaint.setAntiAlias(false);
-        gridPaint.setColor(Color.GREEN);
-        gridPaint.setStrokeWidth(1);
-
         iconPaint.setAntiAlias(true);
         iconPaint.setStyle(Style.STROKE);
         iconPaint.setStrokeWidth(strokeWidth);
@@ -330,25 +325,22 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 if (isMorphingForward()) {
                     // rotate until required angle
                     rotation = ratio * CHECK_MIDDLE_ANGLE;
-                    // lengthen both ends
-		    startX += dip3 / 2 + dip4 + ratio * dip4;
-                    stopX += ratio * (dip8 + diph);
                 } else {
                     // rotate back to starting angle
                     rotation = CHECK_MIDDLE_ANGLE - CHECK_MIDDLE_ANGLE * (1 - ratio);
-                    // shorten one end and lengthen the other
-		    startX += dip3 / 2 + dip8 - (1 - ratio) * (dip6 + diph);
-                    stopX += dip8 - (1 - ratio) * (dip2 + dip6);
                 }
-                pivotX = width / 2 + dip3 * 2;
+                // shorten one end and lengthen the other
+                startX += dip3 / 2 + dip4 - (1 - ratio) * dip2;
+                stopX += ratio * dip1;
+                pivotX = width / 2 + dip3 + diph;
                 break;
             case BURGER_CHECK:
                 // rotate until required angle
                 rotation = ratio * CHECK_MIDDLE_ANGLE;
                 // lengthen both ends
-		startX += ratio * (dip8 + dip3 / 2);
-                stopX += ratio * (dip8 + diph);
-                pivotX = width / 2 + dip3 * 2;
+                startX += ratio * (dip4 + dip3 / 2);
+                stopX += ratio * dip1;
+                pivotX = width / 2 + dip3 + diph;
                 break;
             case X_CHECK:
                 // fade in
@@ -356,9 +348,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 // rotation to check angle
                 rotation = ratio * CHECK_MIDDLE_ANGLE;
                 // lengthen both ends
-		startX += ratio * (dip4 + dip4 + dip3 / 2);
-                stopX += ratio * (dip8 + diph);
-                pivotX = width / 2 + dip3 * 2;
+                startX += ratio * (dip4 + dip3 / 2);
+                stopX += ratio * dip1;
+                pivotX = width / 2 + dip3 + diph;
                 break;
         }
 
@@ -410,8 +402,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pivotX = sidePadding + dip4;
                 pivotY = topPadding + dip3;
 
-		// shorten one end
-		startX += dip3 * ratio;
+                // shorten one end
+                startX += dip3 * ratio;
                 break;
             case ARROW_X:
                 // rotate from ARROW angle to X angle
@@ -424,7 +416,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
                 // lengthen both ends
                 stopX -= resolveStrokeModifier(ratio);
-		startX += dip3;
+                startX += dip3;
                 break;
             case ARROW_CHECK:
                 // fade out
@@ -448,8 +440,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 rotation2 = X_ROTATION_ANGLE;
                 pivotX = sidePadding + dip4;
                 pivotY = topPadding + dip3;
-		stopX += dip3 - dip3 * (1 - ratio);
-		startX += dip3;
+                stopX += dip3 - dip3 * (1 - ratio);
+                startX += dip3;
 
                 // fade out
                 alpha = (int) ((1 - ratio) * 255);
@@ -510,8 +502,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pivotX = sidePadding + dip4;
                 pivotY = height - topPadding - dip3;
 
-		// shorten one end
-		startX += dip3 * ratio;
+                // shorten one end
+                startX += dip3 * ratio;
                 break;
             case ARROW_X:
                 // rotate from ARROW angle to X angle
@@ -524,30 +516,30 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
                 // lengthen both ends
                 stopX -= resolveStrokeModifier(ratio);
-		startX += dip3;
+                startX += dip3;
                 break;
             case ARROW_CHECK:
                 // rotate from ARROW angle to CHECK angle
                 rotation = ARROW_TOP_LINE_ANGLE + ratio * CHECK_BOTTOM_ANGLE;
 
                 // move pivot from ARROW pivot to CHECK pivot
-                pivotX = width / 2 - dip3 * ratio;
+                pivotX = width / 2 + dip3 * ratio;
                 pivotY = height / 2 - dip3 * ratio;
 
                 // length stays same as ARROW
                 stopX -= resolveStrokeModifier(1);
-		startX += dip3 + dip3 * ratio;
+                startX += dip3 + (dip4 + dip1) * ratio;
                 break;
             case BURGER_CHECK:
                 // rotate from ARROW angle to CHECK angle
                 rotation = ratio * (CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE);
 
-                // move pivot from ARROW pivot to CHECK pivot
-                pivotX = width / 2 - dip3 * ratio;
+                // move pivot from BURGER pivot to CHECK pivot
+                pivotX = width / 2 + dip3 * ratio;
                 pivotY = height / 2 - dip3 * ratio;
 
                 // length stays same as BURGER
-		startX += dip6 * ratio;
+                startX += dip8 * ratio;
                 stopX -= resolveStrokeModifier(ratio);
                 break;
             case X_CHECK:
@@ -556,11 +548,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 rotation = X_BOT_LINE_ANGLE + (CHECK_BOTTOM_ANGLE + ARROW_TOP_LINE_ANGLE - X_BOT_LINE_ANGLE) * ratio;
 
                 // move pivot from X to CHECK
-                pivotX = sidePadding + dip4 + (width / 2 - sidePadding - dip3 - dip4) * ratio;
+                pivotX = sidePadding + dip4 + (width / 2 + dip3 - sidePadding - dip4) * ratio;
                 pivotY = height - topPadding - dip3 + (topPadding + height / 2 - height) * ratio;
 
                 // shorten both ends
-		startX += dip6 - dip3 * (1 - ratio);
+                startX += dip8 - (dip4 + dip1) * (1 - ratio);
                 stopX -= resolveStrokeModifier(1 - ratio);
                 break;
         }
@@ -578,17 +570,17 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         switch (stroke) {
             case REGULAR:
                 if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
-		    return dip3 - (dip3 * ratio);
+                    return dip3 - (dip3 * ratio);
                 }
                 return ratio * dip3;
             case THIN:
                 if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
-		    return dip3 + diph - (dip3 + diph) * ratio;
+                    return dip3 + diph - (dip3 + diph) * ratio;
                 }
                 return ratio * (dip3 + diph);
             case EXTRA_THIN:
                 if (animationState == AnimationState.ARROW_X || animationState == AnimationState.X_CHECK) {
-		    return dip4 - ((dip3 + dip1) * ratio);
+                    return dip4 - ((dip3 + dip1) * ratio);
                 }
                 return ratio * dip4;
         }
