@@ -1,7 +1,17 @@
 Change Log
 ==========
 
+Version 1.5.0 (2014-11-19)
+----------------------------
+
+- Revamped CHECK and X icons to suit Material design better.
+
+If old icons are required, use `material-menu:1.4.0`
+
+- BUG FIX: support all ActionBar Sherlock Activity classes
+
 Version 1.4.0 (2014-10-19)
+----------------------------
 
 - Added EXTRAS: Toolbar support for `MaterialMenuIcon`.
 
