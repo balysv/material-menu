@@ -816,15 +816,18 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     @Override public void start() {
-        if (transformationRunning || animatingIconState == null || animatingIconState == currentIconState) return;
-        transformationRunning = true;
+        if (transformationRunning) return;
 
-        final boolean direction = resolveTransformation();
-        transformation.setFloatValues(
-            direction ? TRANSFORMATION_START : TRANSFORMATION_MID,
-            direction ? TRANSFORMATION_MID : TRANSFORMATION_END
-        );
-        transformation.start();
+        if (animatingIconState != null && animatingIconState != currentIconState) {
+            transformationRunning = true;
+
+            final boolean direction = resolveTransformation();
+            transformation.setFloatValues(
+                direction ? TRANSFORMATION_START : TRANSFORMATION_MID,
+                direction ? TRANSFORMATION_MID : TRANSFORMATION_END
+            );
+            transformation.start();
+        }
 
         if (pressedCircle.isRunning()) {
             pressedCircle.cancel();
