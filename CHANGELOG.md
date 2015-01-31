@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.5.1 (2015-01-31)
+----------------------------
+
+- Added MaterielMenuIcon support for non-Toolbar ActionBarCompat v21
+
+Usage: `MaterialMenuIconCompat` in `extras-toolbar` package
+
+- Added API to set an animation listener to MaterialMenuDrawable
+
+Usage: `MaterialMenu.setAnimationListener(Animator.AnimatorListener)`
+
+- BUG FIX: Draw circle pressed state when switching to the same icon
+
 Version 1.5.0 (2014-11-19)
 ----------------------------
 
