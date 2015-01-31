@@ -18,6 +18,8 @@ package com.balysv.materialmenu;
 
 import android.view.animation.Interpolator;
 
+import com.nineoldandroids.animation.Animator;
+
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
 /**
@@ -79,6 +81,13 @@ public interface MaterialMenu {
      * @param interpolator new interpolator
      */
     public void setInterpolator(Interpolator interpolator);
+
+    /**
+     * Set listener for {@code MaterialMenuDrawable} animation events
+     *
+     * @param listener new listener or null to remove any listener
+     */
+    public void setAnimationListener(Animator.AnimatorListener listener);
 
     /**
      * Enable RTL layout. Flips all icons horizontally

@@ -36,6 +36,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.util.Property;
 
 import static android.graphics.Paint.Style;
+import static com.nineoldandroids.animation.Animator.AnimatorListener;
 
 
 public class MaterialMenuDrawable extends Drawable implements Animatable {
@@ -180,8 +181,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private boolean   neverDrawTouch;
     private boolean   rtlEnabled;
 
-    private ObjectAnimator transformation;
-    private ObjectAnimator pressedCircle;
+    private ObjectAnimator   transformation;
+    private ObjectAnimator   pressedCircle;
+    private AnimatorListener animatorListener;
 
     private MaterialMenuState materialMenuState;
 
@@ -619,6 +621,18 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     public void setInterpolator(Interpolator interpolator) {
         transformation.setInterpolator(interpolator);
+    }
+
+    public void setAnimationListener(AnimatorListener listener) {
+        if (animatorListener != null) {
+            transformation.removeListener(animatorListener);
+        }
+
+        if (listener != null) {
+            transformation.addListener(listener);
+        }
+
+        animatorListener = listener;
     }
 
     public void setNeverDrawTouch(boolean neverDrawTouch) {

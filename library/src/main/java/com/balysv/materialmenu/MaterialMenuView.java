@@ -27,6 +27,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
 
+import com.nineoldandroids.animation.Animator;
+
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
@@ -143,6 +145,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void setInterpolator(Interpolator interpolator) {
         drawable.setInterpolator(interpolator);
+    }
+
+    @Override
+    public void setAnimationListener(Animator.AnimatorListener listener) {
+        drawable.setAnimationListener(listener);
     }
 
     @Override
