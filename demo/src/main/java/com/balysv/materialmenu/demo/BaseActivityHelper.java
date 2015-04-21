@@ -36,6 +36,8 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
         parent.findViewById(R.id.switch_item_menu).setOnClickListener(this);
         parent.findViewById(R.id.switch_item_x).setOnClickListener(this);
         parent.findViewById(R.id.switch_item_check).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_show).setOnClickListener(this);
+        parent.findViewById(R.id.switch_item_hide).setOnClickListener(this);
         parent.findViewById(R.id.animate_item_arrow).setOnClickListener(this);
         parent.findViewById(R.id.animate_item_menu).setOnClickListener(this);
         parent.findViewById(R.id.animate_item_x).setOnClickListener(this);
@@ -97,6 +99,12 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
                 break;
             case R.id.switch_item_check:
                 materialMenuView.setState(IconState.CHECK);
+                break;
+            case R.id.switch_item_show:
+                materialMenuView.setVisibility(View.VISIBLE);
+                break;
+            case R.id.switch_item_hide:
+                materialMenuView.setVisibility(View.INVISIBLE);
                 break;
             case R.id.material_menu_button:
                 setMainState();
