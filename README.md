@@ -44,6 +44,7 @@ Customisation is also available through attributes:
 
 ```xml
 app:mm_color="color"               // Color of drawable
+app:mm_visibility="integer"        // Visibility
 app:mm_transformDuration="integer" // Transformation animation duration
 app:mm_pressedDuration="integer"   // Pressed circle animation duration
 app:mm_scale="integer"             // Scale factor of drawable
@@ -102,6 +103,10 @@ and `value` is between `0` and `2`
 ```java
 // change color
 MaterialMenu.setColor(int color)
+
+// change visibility
+// View.VISIBLE, View.INVISIBLE
+MaterialMenu.setVisibility(int visibility)
 
 // change transformation animation duration
 MaterialMenu.setTransformationDuration(int duration)
