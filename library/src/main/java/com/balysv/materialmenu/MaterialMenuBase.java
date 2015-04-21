@@ -116,6 +116,14 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     }
 
     @Override
+    public final void setVisibility(int visibility) {
+        if (visibility == View.VISIBLE || visibility == View.INVISIBLE) {
+            boolean visible = visibility == View.VISIBLE ? true : false;
+            getDrawable().setVisible(visible, false);
+        }
+    }
+
+    @Override
     public final void setTransformationDuration(int duration) {
         getDrawable().setTransformationDuration(duration);
     }

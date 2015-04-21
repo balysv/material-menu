@@ -62,6 +62,13 @@ public interface MaterialMenu {
     public void setColor(int color);
 
     /**
+     * Set visibility of icon
+     *
+     * @param visibility new value for visibility
+     */
+    public void setVisibility(int visibility);
+
+    /**
      * Set duration of transformation animations
      *
      * @param duration new animation duration
