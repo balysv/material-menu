@@ -179,6 +179,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private IconState animatingIconState;
     private boolean   drawTouchCircle;
     private boolean   neverDrawTouch;
+    private boolean   iconVisible;
     private boolean   rtlEnabled;
 
     private ObjectAnimator   transformation;
@@ -266,6 +267,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
      */
 
     @Override public void draw(Canvas canvas) {
+        if(!iconVisible) return;
+
         final float ratio = transformationValue <= 1 ? transformationValue : 2 - transformationValue;
 
         if (rtlEnabled) {
@@ -699,6 +702,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         setTransformationValue(offset);
 
         return currentIconState;
+    }
+
+    public void setIconVisible(boolean visible) {
+        this.iconVisible = visible;
+        invalidateSelf();
     }
 
     public void setRTLEnabled(boolean rtlEnabled) {
