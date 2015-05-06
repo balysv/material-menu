@@ -64,6 +64,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
         try {
             int color = attr.getColor(R.styleable.MaterialMenuView_mm_color, DEFAULT_COLOR);
+            boolean visible = attr.getBoolean(R.styleable.MaterialMenuView_mm_visible, true);
             int scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
             int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
             int pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
@@ -71,6 +72,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
             drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
+            drawable.setIconVisible(visible);
             drawable.setRTLEnabled(rtlEnabled);
         } finally {
             attr.recycle();
@@ -130,6 +132,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void setColor(int color) {
         drawable.setColor(color);
+    }
+
+    @Override
+    public void setIconVisible(boolean visible) {
+        drawable.setIconVisible(visible);
     }
 
     @Override
@@ -218,6 +225,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
     private static class SavedState extends BaseSavedState {
         protected IconState state;
+        protected boolean visible;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -226,12 +234,14 @@ public class MaterialMenuView extends View implements MaterialMenu {
         private SavedState(Parcel in) {
             super(in);
             state = IconState.valueOf(in.readString());
+            visible = in.readByte() != 0;
         }
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeString(state.name());
+            out.writeByte((byte) (visible ? 1 : 0));
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {

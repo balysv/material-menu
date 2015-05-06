@@ -36,7 +36,6 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DUR
 public abstract class MaterialMenuBase implements MaterialMenu {
 
     private static final String STATE_KEY = "material_menu_icon_state";
-
     private MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
 
     private MaterialMenuDrawable drawable;
@@ -116,11 +115,8 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     }
 
     @Override
-    public final void setVisibility(int visibility) {
-        if (visibility == View.VISIBLE || visibility == View.INVISIBLE) {
-            boolean visible = visibility == View.VISIBLE ? true : false;
-            getDrawable().setVisible(visible, false);
-        }
+    public final void setIconVisible(boolean visible) {
+        getDrawable().setIconVisible(visible);
     }
 
     @Override
