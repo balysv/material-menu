@@ -30,6 +30,7 @@ import android.view.animation.Interpolator;
 import com.nineoldandroids.animation.Animator;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_ICON_VISIBLE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
@@ -71,8 +72,8 @@ public class MaterialMenuView extends View implements MaterialMenu {
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
-            drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
-            drawable.setIconVisible(visible);
+            drawable = new MaterialMenuDrawable(context, color, stroke, visible, scale, transformDuration, pressedDuration);
+
             drawable.setRTLEnabled(rtlEnabled);
         } finally {
             attr.recycle();
