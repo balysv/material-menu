@@ -101,10 +101,10 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
                 materialMenuView.setState(IconState.CHECK);
                 break;
             case R.id.switch_item_show:
-                materialMenuView.setIconVisible(true);
+                materialMenuView.setVisible(true);
                 break;
             case R.id.switch_item_hide:
-                materialMenuView.setIconVisible(false);
+                materialMenuView.setVisible(false);
                 break;
             case R.id.material_menu_button:
                 setMainState();
