@@ -95,7 +95,7 @@ MaterialMenu.setTransformationOffset(AnimationState state, float value)
 To hide or show the drawable:
 
 ```java
-MaterialMenu.setIconVisible(boolean visible)
+MaterialMenu.setVisible(boolean visible)
 ```
 
 where `AnimationState` is one of `BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK`
@@ -110,7 +110,7 @@ and `value` is between `0` and `2`
 MaterialMenu.setColor(int color)
 
 // change icon visibility
-MaterialMenu.setIconVisible(boolean visible)
+MaterialMenu.setVisible(boolean visible)
 
 // change transformation animation duration
 MaterialMenu.setTransformationDuration(int duration)
