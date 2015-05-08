@@ -30,7 +30,7 @@ import android.view.animation.Interpolator;
 import com.nineoldandroids.animation.Animator;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_ICON_VISIBLE;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_VISIBLE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
@@ -65,7 +65,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
 
         try {
             int color = attr.getColor(R.styleable.MaterialMenuView_mm_color, DEFAULT_COLOR);
-            boolean visible = attr.getBoolean(R.styleable.MaterialMenuView_mm_visible, true);
+            boolean visible = attr.getBoolean(R.styleable.MaterialMenuView_mm_visible, DEFAULT_VISIBLE);
             int scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
             int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
             int pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
@@ -136,8 +136,8 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     @Override
-    public void setIconVisible(boolean visible) {
-        drawable.setIconVisible(visible);
+    public void setVisible(boolean visible) {
+        drawable.setVisible(visible);
     }
 
     @Override
