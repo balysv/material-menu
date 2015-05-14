@@ -19,7 +19,7 @@ android {
 
 dependencies {
     compile project(':library')
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.1.1'
 }
 
 apply from: '../maven_push.gradle'
