@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+Version 1.5.2 (2015-05-14)
+----------------------------
+
+Added new API to allow setting icon visibility
+
+Usage:
+```java
+MaterialMenu.setVisible(boolean visible)
+```
+
 Version 1.5.1 (2015-01-31)
 ----------------------------
 
