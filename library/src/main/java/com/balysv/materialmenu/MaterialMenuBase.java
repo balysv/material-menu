@@ -24,7 +24,6 @@ import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator;
 
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_VISIBLE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
@@ -50,11 +49,7 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     }
 
     public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
-        this(activity, color, stroke, DEFAULT_VISIBLE, transformDuration, pressedDuration);
-    }
-
-    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, boolean iconVisible, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, stroke, iconVisible, DEFAULT_SCALE, transformDuration, pressedDuration);
+        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
         setActionBarSettings(activity);
         if (providesActionBar()) {
             setupActionBar(activity);
