@@ -168,7 +168,6 @@ protected void onCreate(Bundle savedInstanceState) {
     });
     materialMenu = new MaterialMenuDrawable(this, Color.WHITE, Stroke.THIN);
     toolbar.setNavigationIcon(materialMenu);
-    materialMenu.setNeverDrawTouch(true);
 }
 ```
 
@@ -196,7 +195,6 @@ protected void onCreate(Bundle savedInstanceState) {
             return R.id.toolbar;
         }
     };
-    materialMenu.setNeverDrawTouch(true);
 }
 
 @Override
