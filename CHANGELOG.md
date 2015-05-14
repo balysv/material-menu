@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.5.3 (2015-05-14)
+----------------------------
+
+API break: Circle pressed state is no longer supported.
+
+`MaterialMenu.animatePressedState(IconState)` is now deprecated and should be replaced
+by `MaterialMenu.animateState(IconState)`
+
+`MaterialMenu.setPressedDuration(int)` has been removed.
+
+
 Version 1.5.2 (2015-05-14)
 ----------------------------
 
