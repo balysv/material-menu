@@ -46,10 +46,6 @@ public class MaterialMenuIcon extends MaterialMenuBase {
         super(activity, color, stroke, transformDuration);
     }
 
-    public MaterialMenuIcon(Activity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        super(activity, color, stroke, transformDuration, pressedDuration);
-    }
-
     @Override
     protected View getActionBarHomeView(Activity activity) {
         Resources resources = activity.getResources();

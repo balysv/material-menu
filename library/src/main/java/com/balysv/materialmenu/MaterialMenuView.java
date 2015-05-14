@@ -30,10 +30,9 @@ import android.view.animation.Interpolator;
 import com.nineoldandroids.animation.Animator;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_VISIBLE;
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_VISIBLE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 
@@ -68,11 +67,10 @@ public class MaterialMenuView extends View implements MaterialMenu {
             boolean visible = attr.getBoolean(R.styleable.MaterialMenuView_mm_visible, DEFAULT_VISIBLE);
             int scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
             int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
-            int pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
-            drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
+            drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration);
 
             drawable.setVisible(visible);
             drawable.setRTLEnabled(rtlEnabled);
@@ -122,13 +120,12 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void animateState(IconState state) {
         currentState = state;
-        drawable.animateIconState(state, false);
+        drawable.animateIconState(state);
     }
 
     @Override
     public void animatePressedState(IconState state) {
-        currentState = state;
-        drawable.animateIconState(state, true);
+        animateState(state);
     }
 
     @Override
@@ -144,11 +141,6 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void setTransformationDuration(int duration) {
         drawable.setTransformationDuration(duration);
-    }
-
-    @Override
-    public void setPressedDuration(int duration) {
-        drawable.setPressedDuration(duration);
     }
 
     @Override

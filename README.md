@@ -46,7 +46,6 @@ Customisation is also available through attributes:
 app:mm_color="color"               // Color of drawable
 app:mm_visible="boolean"        	  // Visible
 app:mm_transformDuration="integer" // Transformation animation duration
-app:mm_pressedDuration="integer"   // Pressed circle animation duration
 app:mm_scale="integer"             // Scale factor of drawable
 app:mm_strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
 app:mm_rtlEnabled="boolean"        // Enabled RTL layout support (flips all drawables)
@@ -69,13 +68,7 @@ There are four icon states:
 BURGER, ARROW, X, CHECK
 ```
 
-To morph the drawable state with a pressed circle animation
-
-```java
-MaterialMenu.animatePressedState(IconState state)
-```
-    
-To morph the drawable state without a pressed circle animation
+To morph the drawable state
 
 ```java
 MaterialMenu.animateState(IconState state)
@@ -115,9 +108,6 @@ MaterialMenu.setVisible(boolean visible)
 // change transformation animation duration
 MaterialMenu.setTransformationDuration(int duration)
 
-// change pressed animation duration
-MaterialMenu.setPressedDuration(int duration)
-
 // change transformation interpolator
 MaterialMenu.setInterpolator(Interpolator interpolator)
 
@@ -153,7 +143,7 @@ protected void onSaveInstanceState(Bundle outState) {
 public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getId() == android.R.id.home) {
         // Handle your drawable state here
-        materialMenu.animatePressedState(newState);
+        materialMenu.animateState(newState);
     }
 }
 ```
@@ -173,7 +163,7 @@ protected void onCreate(Bundle savedInstanceState) {
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
         // Handle your drawable state here
-        materialMenu.animatePressedState(newState);
+        materialMenu.animateState(newState);
         }
     });
     materialMenu = new MaterialMenuDrawable(this, Color.WHITE, Stroke.THIN);
@@ -198,7 +188,7 @@ protected void onCreate(Bundle savedInstanceState) {
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
         // Handle your drawable state here
-        materialMenu.animatePressedState(newState);
+        materialMenu.animateState(newState);
         }
     });
     materialMenu = new MaterialMenuIconToolbar(this, Color.WHITE, Stroke.THIN) {
@@ -284,33 +274,6 @@ protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     materialMenu.onSaveInstanceState(outState);
 }
-```
-
-### Circle pressed state
-    
-In order to use the new *Material* circle pressed state, you have to disable ActionBar item backgrounds in your theme and 
-re-enable it for other menu icons
-
-```xml
-<style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-    <item name="android:actionBarItemBackground">@null</item>
-    <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
-    <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
-</style>
-
-<style name="ActionButtonStyle" parent="android:Widget.Holo.ActionButton">
-    <item name="android:background">@drawable/action_bar_item_background</item>
-</style>
-
-<style name="OverflowButtonStyle" parent="android:Widget.Holo.ActionButton.Overflow">
-    <item name="android:background">@drawable/action_bar_item_background</item>
-</style>
-```
-
-Otherwise, to disable circle pressed state use
-
-```java
-MaterialMenu.setNeverDrawTouch(true)
 ```
 
 Developed By

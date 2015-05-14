@@ -124,7 +124,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public static final int     DEFAULT_COLOR              = Color.WHITE;
     public static final int     DEFAULT_SCALE              = 1;
     public static final int     DEFAULT_TRANSFORM_DURATION = 800;
-    public static final int     DEFAULT_PRESSED_DURATION   = 400;
     public static final boolean DEFAULT_VISIBLE            = true;
 
     private static final int BASE_DRAWABLE_WIDTH  = 40;
@@ -152,7 +151,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private final float dip2;
     private final float dip3;
     private final float dip4;
-    private final float dip6;
     private final float dip8;
 
     private final int   width;
@@ -171,40 +169,35 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private final Paint circlePaint = new Paint();
 
     private float   transformationValue   = 0f;
-    private float   pressedProgressValue  = 0f;
     private boolean transformationRunning = false;
 
     private IconState      currentIconState = IconState.BURGER;
     private AnimationState animationState   = AnimationState.BURGER_ARROW;
 
     private IconState animatingIconState;
-    private boolean   drawTouchCircle;
-    private boolean   neverDrawTouch;
     private boolean   visible;
     private boolean   rtlEnabled;
 
     private ObjectAnimator   transformation;
-    private ObjectAnimator   pressedCircle;
     private AnimatorListener animatorListener;
 
     private MaterialMenuState materialMenuState;
 
     public MaterialMenuDrawable(Context context, int color, Stroke stroke) {
-        this(context, color, stroke, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+        this(context, color, stroke, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION);
     }
 
-    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        this(context, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
+    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int transformDuration) {
+        this(context, color, stroke, DEFAULT_SCALE, transformDuration);
     }
 
-    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int scale, int transformDuration, int pressedDuration) {
+    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int scale, int transformDuration) {
         Resources resources = context.getResources();
         // convert each separately due to various densities
         this.dip1 = dpToPx(resources, 1) * scale;
         this.dip2 = dpToPx(resources, 2) * scale;
         this.dip3 = dpToPx(resources, 3) * scale;
         this.dip4 = dpToPx(resources, 4) * scale;
-        this.dip6 = dpToPx(resources, 6) * scale;
         this.dip8 = dpToPx(resources, 8) * scale;
         this.diph = dip1 / 2;
 
@@ -220,19 +213,18 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.topPadding = (height - 5 * dip3) / 2;
 
         initPaint(color);
-        initAnimations(transformDuration, pressedDuration);
+        initAnimations(transformDuration);
 
         materialMenuState = new MaterialMenuState();
     }
 
-    private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, long pressedDuration,
-        int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
+    private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, int width, int height,
+        float iconWidth, float circleRadius, float strokeWidth, float dip1
     ) {
         this.dip1 = dip1;
         this.dip2 = dip1 * 2;
         this.dip3 = dip1 * 3;
         this.dip4 = dip1 * 4;
-        this.dip6 = dip1 * 6;
         this.dip8 = dip1 * 8;
         this.diph = dip1 / 2;
         this.stroke = stroke;
@@ -245,7 +237,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.topPadding = (height - 5 * dip3) / 2;
 
         initPaint(color);
-        initAnimations((int) transformDuration, (int) pressedDuration);
+        initAnimations((int) transformDuration);
 
         materialMenuState = new MaterialMenuState();
     }
@@ -286,13 +278,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         if (rtlEnabled) {
             canvas.restore();
         }
-
-        if (drawTouchCircle) drawTouchCircle(canvas);
-    }
-
-    private void drawTouchCircle(Canvas canvas) {
-        canvas.restore();
-        canvas.drawCircle(width / 2, height / 2, pressedProgressValue, circlePaint);
     }
 
     private void drawMiddleLine(Canvas canvas, float ratio) {
@@ -620,10 +605,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         transformation.setDuration(duration);
     }
 
-    public void setPressedDuration(int duration) {
-        pressedCircle.setDuration(duration);
-    }
-
     public void setInterpolator(Interpolator interpolator) {
         transformation.setInterpolator(interpolator);
     }
@@ -638,10 +619,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
 
         animatorListener = listener;
-    }
-
-    public void setNeverDrawTouch(boolean neverDrawTouch) {
-        this.neverDrawTouch = neverDrawTouch;
     }
 
     public void setIconState(IconState iconState) {
@@ -675,13 +652,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
     }
 
-    public void animateIconState(IconState state, boolean drawTouch) {
+    public void animateIconState(IconState state) {
         synchronized (lock) {
             if (transformationRunning) {
                 transformation.end();
-                pressedCircle.end();
             }
-            drawTouchCircle = drawTouch;
             animatingIconState = state;
             start();
         }
@@ -736,19 +711,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
     };
 
-    private Property<MaterialMenuDrawable, Float> pressedProgressProperty
-        = new Property<MaterialMenuDrawable, Float>(Float.class, "pressedProgress") {
-        @Override
-        public Float get(MaterialMenuDrawable object) {
-            return object.getPressedProgress();
-        }
-
-        @Override
-        public void set(MaterialMenuDrawable object, Float value) {
-            object.setPressedProgress(value);
-        }
-    };
-
     public Float getTransformationValue() {
         return transformationValue;
     }
@@ -758,17 +720,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         invalidateSelf();
     }
 
-    public Float getPressedProgress() {
-        return pressedProgressValue;
-    }
-
-    public void setPressedProgress(Float value) {
-        this.pressedProgressValue = value;
-        circlePaint.setAlpha((int) (DEFAULT_CIRCLE_ALPHA * (1 - value / (circleRadius * 1.22f))));
-        invalidateSelf();
-    }
-
-    private void initAnimations(int transformDuration, int pressedDuration) {
+    private void initAnimations(int transformDuration) {
         transformation = ObjectAnimator.ofFloat(this, transformationProperty, 0);
         transformation.setInterpolator(new DecelerateInterpolator(3));
         transformation.setDuration(transformDuration);
@@ -776,20 +728,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             @Override public void onAnimationEnd(Animator animation) {
                 transformationRunning = false;
                 setIconState(animatingIconState);
-            }
-        });
-
-
-        pressedCircle = ObjectAnimator.ofFloat(this, pressedProgressProperty, 0, 0);
-        pressedCircle.setDuration(pressedDuration);
-        pressedCircle.setInterpolator(new DecelerateInterpolator());
-        pressedCircle.addListener(new AnimatorListenerAdapter() {
-            @Override public void onAnimationEnd(Animator animation) {
-                pressedProgressValue = 0;
-            }
-
-            @Override public void onAnimationCancel(Animator animation) {
-                pressedProgressValue = 0;
             }
         });
     }
@@ -853,14 +791,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             transformation.start();
         }
 
-        if (pressedCircle.isRunning()) {
-            pressedCircle.cancel();
-        }
-        if (drawTouchCircle && !neverDrawTouch) {
-            pressedCircle.setFloatValues(0, circleRadius * 1.22f);
-            pressedCircle.start();
-        }
-
         invalidateSelf();
     }
 
@@ -910,7 +840,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         public Drawable newDrawable() {
             MaterialMenuDrawable drawable = new MaterialMenuDrawable(
                 circlePaint.getColor(), stroke, transformation.getDuration(),
-                pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
+                width, height, iconWidth, circleRadius, strokeWidth, dip1
             );
             drawable.setIconState(animatingIconState != null ? animatingIconState : currentIconState);
             drawable.setVisible(visible);

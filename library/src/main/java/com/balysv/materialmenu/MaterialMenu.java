@@ -51,7 +51,9 @@ public interface MaterialMenu {
      * Animate icon to given state and draw touch circle
      *
      * @param state new icon state
+     * @deprecated Pressed state is not supported. Use {@link #animateState(IconState)}
      */
+    @Deprecated
     void animatePressedState(IconState state);
 
     /**
@@ -64,7 +66,7 @@ public interface MaterialMenu {
     /**
      * Set visibility of icon
      *
-     * @param visible   new value for visibility
+     * @param visible new value for visibility
      */
     void setVisible(boolean visible);
 
@@ -74,13 +76,6 @@ public interface MaterialMenu {
      * @param duration new animation duration
      */
     void setTransformationDuration(int duration);
-
-    /**
-     * Set duration of pressed state circle animation
-     *
-     * @param duration new animation duration
-     */
-    void setPressedDuration(int duration);
 
     /**
      * Set interpolator for transformation animations

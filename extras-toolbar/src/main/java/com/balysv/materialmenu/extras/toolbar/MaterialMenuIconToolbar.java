@@ -17,10 +17,6 @@ public abstract class MaterialMenuIconToolbar extends MaterialMenuBase {
         super(activity, color, stroke, transformDuration);
     }
 
-    public MaterialMenuIconToolbar(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
-        super(activity, color, stroke, transformDuration, pressedDuration);
-    }
-
     @Override
     protected final void setActionBarSettings(Activity activity) {
         Toolbar toolbar = (Toolbar) activity.findViewById(getToolbarViewId());

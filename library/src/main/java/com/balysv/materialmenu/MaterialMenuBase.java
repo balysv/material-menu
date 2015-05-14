@@ -24,7 +24,6 @@ import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator;
 
-import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
 
@@ -41,15 +40,11 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     private MaterialMenuDrawable drawable;
 
     public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke) {
-        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+        this(activity, color, stroke, DEFAULT_TRANSFORM_DURATION);
     }
 
     public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration) {
-        this(activity, color, stroke, transformDuration, DEFAULT_PRESSED_DURATION);
-    }
-
-    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
+        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration);
         setActionBarSettings(activity);
         if (providesActionBar()) {
             setupActionBar(activity);
@@ -100,13 +95,12 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     @Override
     public final void animateState(MaterialMenuDrawable.IconState state) {
         currentState = state;
-        getDrawable().animateIconState(state, false);
+        getDrawable().animateIconState(state);
     }
 
     @Override
     public final void animatePressedState(MaterialMenuDrawable.IconState state) {
-        currentState = state;
-        getDrawable().animateIconState(state, true);
+        animateState(state);
     }
 
     @Override
@@ -122,11 +116,6 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     @Override
     public final void setTransformationDuration(int duration) {
         getDrawable().setTransformationDuration(duration);
-    }
-
-    @Override
-    public final void setPressedDuration(int duration) {
-        getDrawable().setPressedDuration(duration);
     }
 
     @Override
@@ -152,15 +141,6 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     @Override
     public final MaterialMenuDrawable getDrawable() {
         return drawable;
-    }
-
-    /**
-     * Overwrites behaviour of pressed state circle animation even when using {@link #animatePressedState(com.balysv.materialmenu.MaterialMenuDrawable.IconState)}
-     *
-     * @param neverDrawTouch true to never draw pressed state circle animation
-     */
-    public final void setNeverDrawTouch(boolean neverDrawTouch) {
-        getDrawable().setNeverDrawTouch(neverDrawTouch);
     }
 
     /**

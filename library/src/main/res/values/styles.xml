@@ -5,7 +5,6 @@
         <attr name="mm_visible" format="boolean"/>
         <attr name="mm_scale" format="integer"/>
         <attr name="mm_transformDuration" format="integer"/>
-        <attr name="mm_pressedDuration" format="integer"/>
         <attr name="mm_strokeWidth" format="integer"/>
         <attr name="mm_rtlEnabled" format="boolean"/>
     </declare-styleable>

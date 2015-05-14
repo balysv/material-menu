@@ -35,11 +35,6 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
  * A helper class for implementing {@link com.balysv.materialmenu.MaterialMenuDrawable}
  * as an {@link com.actionbarsherlock.app.ActionBar} Sherlock icon.
  * <p/>
- * In order to preserve default ActionBar icon click state call {@link com.balysv.materialmenu.MaterialMenuBase#setNeverDrawTouch(boolean)}.
- * Otherwise, adjust your theme to disable pressed background color by setting <code>android:actionBarItemBackground</code>
- * to null and use <code>android:actionButtonStyle</code>, <code>android:actionOverflowButtonStyle</code> to enable other
- * menu icon backgrounds.
- * <p/>
  * Disables ActionBar Up arrow and replaces default drawable using {@link ActionBar#setIcon(android.graphics.drawable.Drawable)}
  */
 public class MaterialMenuIconSherlock extends MaterialMenuBase {
@@ -50,10 +45,6 @@ public class MaterialMenuIconSherlock extends MaterialMenuBase {
 
     public MaterialMenuIconSherlock(Activity activity, int color, Stroke stroke, int transformDuration) {
         super(activity, color, stroke, transformDuration);
-    }
-
-    public MaterialMenuIconSherlock(Activity activity, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        super(activity, color, stroke, transformDuration, pressedDuration);
     }
 
     @Override

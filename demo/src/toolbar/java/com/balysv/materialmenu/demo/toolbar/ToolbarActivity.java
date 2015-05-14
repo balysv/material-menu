@@ -41,7 +41,6 @@ public class ToolbarActivity extends ActionBarActivity {
                 return R.id.toolbar;
             }
         };
-        materialMenu.setNeverDrawTouch(true);
         helper = new BaseActivityHelper();
         helper.init(getWindow().getDecorView(), materialMenu);
     }

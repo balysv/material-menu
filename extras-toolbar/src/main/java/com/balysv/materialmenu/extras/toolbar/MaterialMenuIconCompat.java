@@ -18,10 +18,6 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
         super(activity, color, stroke, transformDuration);
     }
 
-    public MaterialMenuIconCompat(ActionBarActivity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
-        super(activity, color, stroke, transformDuration, pressedDuration);
-    }
-
     @Override
     protected View getActionBarHomeView(Activity activity) {
         return null;
