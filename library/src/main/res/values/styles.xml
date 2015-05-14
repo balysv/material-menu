@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="MaterialMenuView">
         <attr name="mm_color" format="color"/>
+        <attr name="mm_visible" format="boolean"/>
         <attr name="mm_scale" format="integer"/>
         <attr name="mm_transformDuration" format="integer"/>
         <attr name="mm_pressedDuration" format="integer"/>

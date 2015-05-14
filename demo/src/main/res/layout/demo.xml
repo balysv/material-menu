@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:mm_strokeWidth="2"
+                app:mm_visible="true"
                 app:mm_color="#ffcc0000"
                 app:mm_transformDuration="3000"
                 app:mm_scale="@integer/demo_scale"/>
@@ -149,6 +150,24 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="@string/set_check"/>
+
+            <Button
+                android:id="@+id/switch_item_show"
+                android:textColor="@android:color/white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/set_show"/>
+
+            <Button
+                android:id="@+id/switch_item_hide"
+                android:textColor="@android:color/white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/set_hide"/>
 
 
         </LinearLayout>

@@ -44,6 +44,7 @@ Customisation is also available through attributes:
 
 ```xml
 app:mm_color="color"               // Color of drawable
+app:mm_visible="boolean"        	  // Visible
 app:mm_transformDuration="integer" // Transformation animation duration
 app:mm_pressedDuration="integer"   // Pressed circle animation duration
 app:mm_scale="integer"             // Scale factor of drawable
@@ -91,6 +92,11 @@ To animate the drawable manually (i.e. on navigation drawer slide):
 ```java
 MaterialMenu.setTransformationOffset(AnimationState state, float value)
 ```
+To hide or show the drawable:
+
+```java
+MaterialMenu.setVisible(boolean visible)
+```
 
 where `AnimationState` is one of `BURGER_ARROW, BURGER_X, ARROW_X, ARROW_CHECK, BURGER_CHECK, X_CHECK`
 and `value` is between `0` and `2`
@@ -102,6 +108,9 @@ and `value` is between `0` and `2`
 ```java
 // change color
 MaterialMenu.setColor(int color)
+
+// change icon visibility
+MaterialMenu.setVisible(boolean visible)
 
 // change transformation animation duration
 MaterialMenu.setTransformationDuration(int duration)

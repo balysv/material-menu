@@ -126,6 +126,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public static final int DEFAULT_TRANSFORM_DURATION = 800;
     public static final int DEFAULT_PRESSED_DURATION   = 400;
 
+    public static final boolean DEFAULT_VISIBLE   = true;
+
     private static final int BASE_DRAWABLE_WIDTH  = 40;
     private static final int BASE_DRAWABLE_HEIGHT = 40;
     private static final int BASE_ICON_WIDTH      = 20;
@@ -179,6 +181,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private IconState animatingIconState;
     private boolean   drawTouchCircle;
     private boolean   neverDrawTouch;
+    private boolean   visible;
     private boolean   rtlEnabled;
 
     private ObjectAnimator   transformation;
@@ -187,15 +190,19 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     private MaterialMenuState materialMenuState;
 
+    public MaterialMenuDrawable(Context context, int color, Stroke stroke, boolean visible) {
+        this(context, color, stroke, visible, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+    }
+
     public MaterialMenuDrawable(Context context, int color, Stroke stroke) {
-        this(context, color, stroke, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
+        this(context, color, stroke, DEFAULT_VISIBLE, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
     }
 
     public MaterialMenuDrawable(Context context, int color, Stroke stroke, int transformDuration, int pressedDuration) {
-        this(context, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
+        this(context, color, stroke, DEFAULT_VISIBLE, DEFAULT_SCALE, transformDuration, pressedDuration);
     }
 
-    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int scale, int transformDuration, int pressedDuration) {
+    public MaterialMenuDrawable(Context context, int color, Stroke stroke, boolean visible, int scale, int transformDuration, int pressedDuration) {
         Resources resources = context.getResources();
         // convert each separately due to various densities
         this.dip1 = dpToPx(resources, 1) * scale;
@@ -207,6 +214,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.diph = dip1 / 2;
 
         this.stroke = stroke;
+        this.visible = visible;
         this.width = (int) (dpToPx(resources, BASE_DRAWABLE_WIDTH) * scale);
         this.height = (int) (dpToPx(resources, BASE_DRAWABLE_HEIGHT) * scale);
         this.iconWidth = dpToPx(resources, BASE_ICON_WIDTH) * scale;
@@ -266,6 +274,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
      */
 
     @Override public void draw(Canvas canvas) {
+        if(!visible) return;
+
         final float ratio = transformationValue <= 1 ? transformationValue : 2 - transformationValue;
 
         if (rtlEnabled) {
@@ -701,6 +711,11 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return currentIconState;
     }
 
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+        invalidateSelf();
+    }
+
     public void setRTLEnabled(boolean rtlEnabled) {
         this.rtlEnabled = rtlEnabled;
         invalidateSelf();
@@ -903,6 +918,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
                 pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
             );
             drawable.setIconState(animatingIconState != null ? animatingIconState : currentIconState);
+            drawable.setVisible(visible);
             drawable.setRTLEnabled(rtlEnabled);
             return drawable;
         }

@@ -24,6 +24,7 @@ import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator;
 
+import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_VISIBLE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_PRESSED_DURATION;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_SCALE;
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DURATION;
@@ -36,7 +37,6 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_TRANSFORM_DUR
 public abstract class MaterialMenuBase implements MaterialMenu {
 
     private static final String STATE_KEY = "material_menu_icon_state";
-
     private MaterialMenuDrawable.IconState currentState = MaterialMenuDrawable.IconState.BURGER;
 
     private MaterialMenuDrawable drawable;
@@ -50,7 +50,11 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     }
 
     public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration, int pressedDuration) {
-        drawable = new MaterialMenuDrawable(activity, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
+        this(activity, color, stroke, DEFAULT_VISIBLE, transformDuration, pressedDuration);
+    }
+
+    public MaterialMenuBase(Activity activity, int color, MaterialMenuDrawable.Stroke stroke, boolean iconVisible, int transformDuration, int pressedDuration) {
+        drawable = new MaterialMenuDrawable(activity, color, stroke, iconVisible, DEFAULT_SCALE, transformDuration, pressedDuration);
         setActionBarSettings(activity);
         if (providesActionBar()) {
             setupActionBar(activity);
@@ -113,6 +117,11 @@ public abstract class MaterialMenuBase implements MaterialMenu {
     @Override
     public final void setColor(int color) {
         getDrawable().setColor(color);
+    }
+
+    @Override
+    public final void setVisible(boolean visible) {
+        getDrawable().setVisible(visible);
     }
 
     @Override

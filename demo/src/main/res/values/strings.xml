@@ -14,6 +14,8 @@
     <string name="set_arrow">SET ARROW</string>
     <string name="set_x">SET X</string>
     <string name="set_check">SET CHECK</string>
+    <string name="set_hide">HIDE</string>
+    <string name="set_show">SHOW</string>
     <string name="title_activity_custom_view">Material menu</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
