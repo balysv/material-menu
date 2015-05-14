@@ -208,6 +208,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
         setState(savedState.state);
+        setVisible(savedState.visible);
     }
 
     private void adjustDrawablePadding() {
