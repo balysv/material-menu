@@ -193,6 +193,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         Parcelable superState = super.onSaveInstanceState();
         SavedState savedState = new SavedState(superState);
         savedState.state = currentState;
+        savedState.visible = ((drawable != null) ? drawable.isDrawableVisible() : false);
         return savedState;
     }
 
