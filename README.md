@@ -17,7 +17,7 @@ Including in your project
 // stock actionBar
 compile 'com.balysv.materialmenu:material-menu:1.x.x'
 
-// Toolbar and ActionBarCompat-v21 (includes support-v7:21.0.x)
+// Toolbar and ActionBarCompat-v22 (includes support-v7:22.0.x)
 compile 'com.balysv.materialmenu:material-menu-toolbar:1.x.x'
 
 // actionBarCompat-v20 (up to support-v7:20.0.0 - does not support Toolbar)

@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.5.4 (2015-05-30)
+----------------------------
+
+- Use `AppCompatActivity` instead of `ActionBarActivity` for `extras-toolbar` package
+- BUG FIX: `MaterialMenuView` visibility is now preserved on `SavedState`
+
 Version 1.5.3 (2015-05-14)
 ----------------------------
 
