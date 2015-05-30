@@ -2,7 +2,7 @@ package com.balysv.materialmenu.demo.toolbar;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -15,7 +15,7 @@ import static com.balysv.materialmenu.demo.BaseActivityHelper.generateState;
 import static com.balysv.materialmenu.demo.BaseActivityHelper.intToState;
 
 
-public class ToolbarActivity extends ActionBarActivity {
+public class ToolbarActivity extends AppCompatActivity {
 
     private MaterialMenuIconToolbar materialMenu;
 

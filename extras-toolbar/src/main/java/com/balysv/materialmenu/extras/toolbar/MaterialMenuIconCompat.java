@@ -2,7 +2,7 @@ package com.balysv.materialmenu.extras.toolbar;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.balysv.materialmenu.MaterialMenuBase;
@@ -10,11 +10,11 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 
 public class MaterialMenuIconCompat extends MaterialMenuBase {
 
-    public MaterialMenuIconCompat(ActionBarActivity activity, int color, MaterialMenuDrawable.Stroke stroke) {
+    public MaterialMenuIconCompat(AppCompatActivity activity, int color, MaterialMenuDrawable.Stroke stroke) {
         super(activity, color, stroke);
     }
 
-    public MaterialMenuIconCompat(ActionBarActivity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration) {
+    public MaterialMenuIconCompat(AppCompatActivity activity, int color, MaterialMenuDrawable.Stroke stroke, int transformDuration) {
         super(activity, color, stroke, transformDuration);
     }
 
@@ -35,7 +35,7 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
 
     @Override
     protected void setActionBarSettings(Activity activity) {
-        ActionBar actionBar = ((ActionBarActivity) activity).getSupportActionBar();
+        ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setHomeButtonEnabled(true);

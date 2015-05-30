@@ -1,12 +1,12 @@
 package com.balysv.materialmenu.demo.abc_v21;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.balysv.materialmenu.demo.BaseActivityHelper;
 import com.balysv.materialmenu.demo.R;
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected BaseActivityHelper helper;
 
