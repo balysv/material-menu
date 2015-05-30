@@ -695,6 +695,10 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return currentIconState;
     }
 
+    public boolean isDrawableVisible(){
+        return visible;
+    }
+
     /*
      * Animations
      */
@@ -856,9 +860,5 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     static float dpToPx(Resources resources, float dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
-    }
-
-    boolean isDrawableVisible(){
-        return visible;
     }
 }
