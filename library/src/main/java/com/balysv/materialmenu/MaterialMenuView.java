@@ -70,7 +70,21 @@ public class MaterialMenuView extends View implements MaterialMenu {
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
+            String state=attr.getString(R.styleable.MaterialMenuView_mm_state);
+            switch (state){
+                case "check":
+                    currentState=IconState.CHECK;
+                    break;
+                case "x":
+                    currentState=IconState.X;
+                    break;
+                case "arrow":
+                    currentState=IconState.ARROW;
+                    break;
+            }
+
             drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration);
+            drawable.setIconState(currentState);
 
             drawable.setVisible(visible);
             drawable.setRTLEnabled(rtlEnabled);

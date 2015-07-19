@@ -1,3 +1,4 @@
+
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +28,8 @@
                 app:mm_visible="true"
                 app:mm_color="#ffcc0000"
                 app:mm_transformDuration="3000"
-                app:mm_scale="@integer/demo_scale"/>
+                app:mm_scale="@integer/demo_scale"
+                app:mm_state="burger"/>
         </FrameLayout>
 
         <LinearLayout
