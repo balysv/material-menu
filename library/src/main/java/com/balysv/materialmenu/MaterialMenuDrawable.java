@@ -42,7 +42,23 @@ import static com.nineoldandroids.animation.Animator.AnimatorListener;
 public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     public enum IconState {
-        BURGER, ARROW, X, CHECK
+        BURGER, ARROW, X, CHECK;
+
+        public static IconState fromString(String s){
+            if(s==null){
+                return BURGER;
+            }
+            s=s.toLowerCase();
+            switch (s){
+                case "arrow":
+                    return ARROW;
+                case "x":
+                    return X;
+                case "check":
+                    return CHECK;
+            }
+            return BURGER;
+        }
     }
 
     public enum AnimationState {

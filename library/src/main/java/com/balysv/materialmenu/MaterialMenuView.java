@@ -71,17 +71,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
             String state=attr.getString(R.styleable.MaterialMenuView_mm_state);
-            switch (state){
-                case "check":
-                    currentState=IconState.CHECK;
-                    break;
-                case "x":
-                    currentState=IconState.X;
-                    break;
-                case "arrow":
-                    currentState=IconState.ARROW;
-                    break;
-            }
+            currentState=IconState.fromString(state);
 
             drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration);
             drawable.setIconState(currentState);
