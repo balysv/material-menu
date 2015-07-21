@@ -44,17 +44,13 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public enum IconState {
         BURGER, ARROW, X, CHECK;
 
-        public static IconState fromString(String s){
-            if(s==null){
-                return BURGER;
-            }
-            s=s.toLowerCase();
-            switch (s){
-                case "arrow":
+        public static IconState fromInteger(int id){
+            switch (id){
+                case 3:
                     return ARROW;
-                case "x":
+                case 2:
                     return X;
-                case "check":
+                case 1:
                     return CHECK;
             }
             return BURGER;

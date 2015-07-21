@@ -29,7 +29,7 @@
                 app:mm_color="#ffcc0000"
                 app:mm_transformDuration="3000"
                 app:mm_scale="@integer/demo_scale"
-                app:mm_state="burger"/>
+                app:mm_state="x"/>
         </FrameLayout>
 
         <LinearLayout
