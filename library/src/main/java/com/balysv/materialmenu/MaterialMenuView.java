@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Interpolator;
 
@@ -70,7 +71,11 @@ public class MaterialMenuView extends View implements MaterialMenu {
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
 
+            int state=attr.getInteger(R.styleable.MaterialMenuView_mm_state, 0);
+            currentState=IconState.fromInteger(state);
+
             drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration);
+            drawable.setIconState(currentState);
 
             drawable.setVisible(visible);
             drawable.setRTLEnabled(rtlEnabled);
