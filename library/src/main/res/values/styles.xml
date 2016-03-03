@@ -7,5 +7,11 @@
         <attr name="mm_transformDuration" format="integer"/>
         <attr name="mm_strokeWidth" format="integer"/>
         <attr name="mm_rtlEnabled" format="boolean"/>
+        <attr name="mm_iconState" format="enum">
+            <enum name="burger" value="0" />
+            <enum name="arrow" value="1" />
+            <enum name="x" value="2" />
+            <enum name="check" value="3" />
+        </attr>
     </declare-styleable>
 </resources>
