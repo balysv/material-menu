@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 20
+        targetSdkVersion 24
         versionCode 3
         versionName "1.1.1"
     }
@@ -18,7 +18,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.android.support:appcompat-v7:24.1.1'
     compile project(':library')
 }
 
