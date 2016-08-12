@@ -1,6 +1,7 @@
 package com.balysv.materialmenu.demo;
 
 import android.graphics.Color;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -128,7 +129,7 @@ public class BaseActivityHelper implements View.OnClickListener, SeekBar.OnSeekB
     }
 
     public void refreshDrawerState() {
-        this.direction = drawerLayout.isDrawerOpen(Gravity.START);
+        this.direction = drawerLayout.isDrawerOpen(GravityCompat.START);
     }
 
     public static int generateState(int previous) {

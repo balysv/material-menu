@@ -13,7 +13,6 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
 import static com.balysv.materialmenu.demo.BaseActivityHelper.generateState;
 import static com.balysv.materialmenu.demo.BaseActivityHelper.intToState;
 
-
 public class HomeIconActivity extends BaseActivity {
 
     private MaterialMenuIcon materialMenu;

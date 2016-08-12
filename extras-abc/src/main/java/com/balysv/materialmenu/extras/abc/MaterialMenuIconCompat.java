@@ -18,7 +18,6 @@ package com.balysv.materialmenu.extras.abc;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -48,9 +47,7 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
     protected View getActionBarHomeView(Activity activity) {
         Resources resources = activity.getResources();
         return activity.getWindow().getDecorView().findViewById(
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
-                ? resources.getIdentifier("android:id/home", null, null)
-                : R.id.home
+            resources.getIdentifier("android:id/home", null, null)
         );
     }
 
@@ -58,22 +55,15 @@ public class MaterialMenuIconCompat extends MaterialMenuBase {
     protected View getActionBarUpView(Activity activity) {
         Resources resources = activity.getResources();
         View decorView = activity.getWindow().getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            ViewGroup actionBarView = (ViewGroup) activity.getWindow().getDecorView().findViewById(
-                resources.getIdentifier("android:id/action_bar", null, null)
-            );
-            View homeView = actionBarView.getChildAt(
-                actionBarView.getChildCount() > 1 ? 1 : 0
-            );
-            return homeView.findViewById(
-                resources.getIdentifier("android:id/up", null, null)
-            );
-        } else {
-            // there are duplicate up ids; extract it from non expanded action bar view
-            ViewGroup actionBarView = (ViewGroup) decorView.findViewById(R.id.action_bar);
-            View homeView = actionBarView.getChildAt(1);
-            return homeView.findViewById(R.id.up);
-        }
+        ViewGroup actionBarView = (ViewGroup) activity.getWindow().getDecorView().findViewById(
+            resources.getIdentifier("android:id/action_bar", null, null)
+        );
+        View homeView = actionBarView.getChildAt(
+            actionBarView.getChildCount() > 1 ? 1 : 0
+        );
+        return homeView.findViewById(
+            resources.getIdentifier("android:id/up", null, null)
+        );
     }
 
     @Override

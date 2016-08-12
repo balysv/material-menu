@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 5
         versionName "1.2.0"
@@ -18,7 +18,6 @@ android {
 }
 
 dependencies {
-    compile 'com.nineoldandroids:library:2.4.0'
 }
 
 apply from: '../maven_push.gradle'
