@@ -16,9 +16,6 @@ android {
         stock {
             applicationId "com.balysv.materialmenu.demo.stock"
         }
-        abc {
-            applicationId "com.balysv.materialmenu.demo.abc"
-        }
         toolbar {
             applicationId "com.balysv.materialmenu.demo.toolbar"
         }
@@ -30,7 +27,6 @@ android {
 
 dependencies {
     compile project(':library')
-    abcCompile project(':extras-abc')
     toolbarCompile project(':extras-toolbar');
     abc_v21Compile project(':extras-toolbar')
 
