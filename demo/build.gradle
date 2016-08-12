@@ -15,12 +15,15 @@ android {
     productFlavors {
         stock {
             applicationId "com.balysv.materialmenu.demo.stock"
+            resValue "string", "app_name", "Material menu - stock"
         }
         toolbar {
             applicationId "com.balysv.materialmenu.demo.toolbar"
+            resValue "string", "app_name", "Material menu - toolbar"
         }
         abc_v21 {
             applicationId "com.balysv.materialmenu.demo.abc_v21"
+            resValue "string", "app_name", "Material menu - abc_v21"
         }
     }
 }
