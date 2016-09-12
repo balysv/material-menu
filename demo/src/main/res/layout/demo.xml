@@ -7,171 +7,184 @@
     android:layout_height="match_parent"
     tools:context=".DemoActivity">
 
-    <RelativeLayout
-        android:id="@+id/content"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray">
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+            android:id="@+id/toolbar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:background="?attr/colorPrimary"/>
 
-            <com.balysv.materialmenu.MaterialMenuView
-                android:id="@+id/material_menu_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:mm_strokeWidth="2"
-                app:mm_visible="true"
-                app:mm_color="#ffcc0000"
-                app:mm_transformDuration="3000"
-                app:mm_scale="@integer/demo_scale"/>
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_above="@+id/item_animation_controls"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="#686868"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            android:id="@+id/content">
 
-            <TextView
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:text="@string/duration"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
 
-            <SeekBar
-                android:id="@+id/item_animation_duration"
-                android:layout_marginLeft="12dp"
+                <com.balysv.materialmenu.MaterialMenuView
+                    android:id="@+id/material_menu_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:mm_strokeWidth="2"
+                    app:mm_color="#ffcc0000"
+                    app:mm_transformDuration="3000"
+                    app:mm_scale="@integer/demo_scale"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_above="@+id/item_animation_controls"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#686868"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
 
-        <LinearLayout
-            android:id="@id/item_animation_controls"
-            android:layout_above="@+id/item_set_controls"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:divider="@android:color/black"
-            android:background="#484848">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/duration"
+                    />
 
-            <Button
-                android:id="@+id/animate_item_menu"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/animate_menu"/>
+                <SeekBar
+                    android:id="@+id/item_animation_duration"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@id/item_animation_controls"
+                android:layout_above="@+id/item_set_controls"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@android:color/black"
+                android:background="#484848">
 
-            <Button
-                android:id="@+id/animate_item_arrow"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/animate_arrow"/>
-
-
-            <Button
-                android:id="@+id/animate_item_x"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/animate_x"/>
-
-            <Button
-                android:id="@+id/animate_item_check"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/animate_check"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@id/item_set_controls"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:background="#282828">
-
-            <Button
-                android:id="@+id/switch_item_menu"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_menu"/>
+                <Button
+                    android:id="@+id/animate_item_menu"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/animate_menu"/>
 
 
-            <Button
-                android:id="@+id/switch_item_arrow"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_arrow"/>
+                <Button
+                    android:id="@+id/animate_item_arrow"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/animate_arrow"/>
 
 
-            <Button
-                android:id="@+id/switch_item_x"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_x"/>
+                <Button
+                    android:id="@+id/animate_item_x"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/animate_x"/>
 
-            <Button
-                android:id="@+id/switch_item_check"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_check"/>
+                <Button
+                    android:id="@+id/animate_item_check"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/animate_check"/>
 
-            <Button
-                android:id="@+id/switch_item_show"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_show"/>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/switch_item_hide"
-                android:textColor="@android:color/white"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/set_hide"/>
+            <LinearLayout
+                android:id="@id/item_set_controls"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="#282828">
+
+                <Button
+                    android:id="@+id/switch_item_menu"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_menu"/>
 
 
-        </LinearLayout>
-    </RelativeLayout>
+                <Button
+                    android:id="@+id/switch_item_arrow"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_arrow"/>
+
+
+                <Button
+                    android:id="@+id/switch_item_x"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_x"/>
+
+                <Button
+                    android:id="@+id/switch_item_check"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_check"/>
+
+
+                <Button
+                    android:id="@+id/switch_item_show"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_show"/>
+
+                <Button
+                    android:id="@+id/switch_item_hide"
+                    android:textColor="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/set_hide"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/drawer"

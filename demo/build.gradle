@@ -1,43 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.balysv.materialmenu.demo"
-        minSdkVersion 9
-        targetSdkVersion 21
+        minSdkVersion 14
+        targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
-    }
-
-    productFlavors {
-        stock {
-            applicationId "com.balysv.materialmenu.demo.stock"
-        }
-        abc {
-            applicationId "com.balysv.materialmenu.demo.abc"
-        }
-        abs {
-            applicationId "com.balysv.materialmenu.demo.abs"
-        }
-        toolbar {
-            applicationId "com.balysv.materialmenu.demo.toolbar"
-        }
-        abc_v21 {
-            applicationId "com.balysv.materialmenu.demo.abc_v21"
-        }
+        versionName "2.0"
     }
 }
 
 dependencies {
     compile project(':library')
-    absCompile project(':extras-abs')
-    abcCompile project(':extras-abc')
-    toolbarCompile project(':extras-toolbar');
-    abc_v21Compile project(':extras-toolbar')
 
-    compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.android.support:cardview-v7:21.0.0'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile "com.android.support:design:24.2.0"
 }

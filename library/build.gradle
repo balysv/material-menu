@@ -1,24 +1,18 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 20
-        versionCode 5
-        versionName "1.2.0"
+        minSdkVersion 14
+        targetSdkVersion 24
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-}
-
-dependencies {
-    compile 'com.nineoldandroids:library:2.4.0'
 }
 
 apply from: '../maven_push.gradle'

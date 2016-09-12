@@ -16,9 +16,8 @@
 
 package com.balysv.materialmenu;
 
+import android.animation.Animator;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 
@@ -31,30 +30,21 @@ public interface MaterialMenu {
      *
      * @param state new icon state
      */
-    void setState(IconState state);
+    void setIconState(IconState state);
 
     /**
      * Return current icon state
      *
      * @return icon state
      */
-    IconState getState();
+    IconState getIconState();
 
     /**
      * Animate icon to given state.
      *
      * @param state new icon state
      */
-    void animateState(IconState state);
-
-    /**
-     * Animate icon to given state and draw touch circle
-     *
-     * @param state new icon state
-     * @deprecated Pressed state is not supported. Use {@link #animateState(IconState)}
-     */
-    @Deprecated
-    void animatePressedState(IconState state);
+    void animateIconState(IconState state);
 
     /**
      * Set color of icon
@@ -105,10 +95,5 @@ public interface MaterialMenu {
      * @param value          between {@link com.balysv.materialmenu.MaterialMenuDrawable#TRANSFORMATION_START} and
      *                       {@link com.balysv.materialmenu.MaterialMenuDrawable#TRANSFORMATION_END}.
      */
-    void setTransformationOffset(MaterialMenuDrawable.AnimationState animationState, float value);
-
-    /**
-     * @return {@link MaterialMenuDrawable} to be used for the menu
-     */
-    MaterialMenuDrawable getDrawable();
+    IconState setTransformationOffset(MaterialMenuDrawable.AnimationState animationState, float value);
 }

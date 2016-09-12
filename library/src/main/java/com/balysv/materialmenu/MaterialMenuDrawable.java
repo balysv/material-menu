@@ -17,6 +17,10 @@
 package com.balysv.materialmenu;
 
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -26,20 +30,14 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.util.Property;
 import android.util.TypedValue;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
-import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.util.Property;
-
 import static android.graphics.Paint.Style;
-import static com.nineoldandroids.animation.Animator.AnimatorListener;
 
-
-public class MaterialMenuDrawable extends Drawable implements Animatable {
+public class MaterialMenuDrawable extends Drawable implements MaterialMenu, Animatable {
 
     public enum IconState {
         BURGER, ARROW, X, CHECK
@@ -218,7 +216,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         materialMenuState = new MaterialMenuState();
     }
 
-    private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, int width, int height,
+    private MaterialMenuDrawable(
+        int color, Stroke stroke, long transformDuration, int width, int height,
         float iconWidth, float circleRadius, float strokeWidth, float dip1
     ) {
         this.dip1 = dip1;
@@ -695,7 +694,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return currentIconState;
     }
 
-    public boolean isDrawableVisible(){
+    public boolean isDrawableVisible() {
         return visible;
     }
 
@@ -811,25 +810,20 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return transformationRunning;
     }
 
-    @Override
-    public int getIntrinsicWidth() {
+    @Override public int getIntrinsicWidth() {
         return width;
     }
 
-    @Override
-    public int getIntrinsicHeight() {
+    @Override public int getIntrinsicHeight() {
         return height;
     }
 
-
-    @Override
-    public ConstantState getConstantState() {
+    @Override public ConstantState getConstantState() {
         materialMenuState.changingConfigurations = getChangingConfigurations();
         return materialMenuState;
     }
 
-    @Override
-    public Drawable mutate() {
+    @Override public Drawable mutate() {
         materialMenuState = new MaterialMenuState();
         return this;
     }
@@ -840,8 +834,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         private MaterialMenuState() {
         }
 
-        @Override
-        public Drawable newDrawable() {
+        @Override public Drawable newDrawable() {
             MaterialMenuDrawable drawable = new MaterialMenuDrawable(
                 circlePaint.getColor(), stroke, transformation.getDuration(),
                 width, height, iconWidth, circleRadius, strokeWidth, dip1
@@ -852,8 +845,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
             return drawable;
         }
 
-        @Override
-        public int getChangingConfigurations() {
+        @Override public int getChangingConfigurations() {
             return changingConfigurations;
         }
     }
