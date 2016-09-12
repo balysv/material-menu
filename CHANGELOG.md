@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.5.5 (2016-09-13)
+----------------------------
+
+- Added `app:mm_iconState="enum"` attribute to `MaterialMenuView`  that allows setting the 
+initial state of the drawable.
+
 Version 1.5.4 (2015-05-30)
 ----------------------------
 
