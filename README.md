@@ -17,7 +17,7 @@ compile 'com.balysv.materialmenu:material-menu:2.0.0'
 ```
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.balysv.materialmenu/material-menu/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.balysv.materialmenu/material-menu)
-<a href="http://www.methodscount.com/?lib=com.balysv.materialmenu%3Amaterial-menu%3A1.5.4"><img src="https://img.shields.io/badge/Methods and size-core: 254 | deps: 929 | 26 KB-e91e63.svg"/></a>
+<a href="http://www.methodscount.com/?lib=com.balysv.materialmenu%3Amaterial-menu%3A2.0.0"><img src="https://img.shields.io/badge/Methods and size-core: 254 | deps: 929 | 26 KB-e91e63.svg"/></a>
 
 #### Versions up to 2.0 (deprecated)
 
