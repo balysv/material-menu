@@ -1,6 +1,18 @@
 Change Log
 ==========
 
+Version 2.0.0 (2016-09-13)
+----------------------------
+
+**Major update**
+
+- Stripping main library classes to bare minimum - `MaterialMenuDrawable` and `MaterialMenuView`. 
+- Removed all `extras` packages since ActionBarCompat or ActionBarSherlock are not being maintained
+for quite a while now. Most usages will be with `Toolbar`. Integrating the drawable into it will be up 
+to the user of the library (see README or demo).
+- Removed `nineoldadroids` dependency - reduced method count by 929!
+- Bumped min api version to 14
+
 Version 1.5.5 (2016-09-13)
 ----------------------------
 
