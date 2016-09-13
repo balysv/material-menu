@@ -16,9 +16,8 @@
 
 package com.balysv.materialmenu;
 
+import android.animation.Animator;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 

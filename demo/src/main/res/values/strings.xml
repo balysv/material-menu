@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Material menu</string>
     <string name="action_random">Just a random icon</string>
     <string name="action_switch_custom">Use CustomView</string>
     <string name="action_switch_home_icon">Use Home icon</string>

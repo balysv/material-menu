@@ -17,6 +17,9 @@
 package com.balysv.materialmenu;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -26,18 +29,12 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.util.Property;
 import android.util.TypedValue;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
-import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.util.Property;
-
 import static android.graphics.Paint.Style;
-import static com.nineoldandroids.animation.Animator.AnimatorListener;
-
 
 public class MaterialMenuDrawable extends Drawable implements Animatable {
 
@@ -178,8 +175,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private boolean   visible;
     private boolean   rtlEnabled;
 
-    private ObjectAnimator   transformation;
-    private AnimatorListener animatorListener;
+    private ObjectAnimator transformation;
+    private Animator.AnimatorListener animatorListener;
 
     private MaterialMenuState materialMenuState;
 
@@ -609,7 +606,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         transformation.setInterpolator(interpolator);
     }
 
-    public void setAnimationListener(AnimatorListener listener) {
+    public void setAnimationListener(Animator.AnimatorListener listener) {
         if (animatorListener != null) {
             transformation.removeListener(animatorListener);
         }
