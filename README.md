@@ -18,6 +18,9 @@ compile 'com.balysv.materialmenu:material-menu:2.0.0'
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.balysv.materialmenu/material-menu/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.balysv.materialmenu/material-menu)
 
+<a href="http://www.methodscount.com/?lib=com.balysv.materialmenu%3Amaterial-menu%3A%2B"><img src="https://img.shields.io/badge/Methods and size-206 | 23 KB-e91e63.svg"/></a>
+
+
 #### Versions up to 2.0 (deprecated)
 
 See [README][1] for setting up older versions of the library.
