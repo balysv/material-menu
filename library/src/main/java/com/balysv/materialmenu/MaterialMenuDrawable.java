@@ -120,7 +120,7 @@ public class MaterialMenuDrawable extends Drawable implements MaterialMenu, Anim
     }
 
     public static final int     DEFAULT_COLOR              = Color.WHITE;
-    public static final int     DEFAULT_SCALE              = 1;
+    public static final float   DEFAULT_SCALE              = 1f;
     public static final int     DEFAULT_TRANSFORM_DURATION = 800;
     public static final boolean DEFAULT_VISIBLE            = true;
 
@@ -189,7 +189,7 @@ public class MaterialMenuDrawable extends Drawable implements MaterialMenu, Anim
         this(context, color, stroke, DEFAULT_SCALE, transformDuration);
     }
 
-    public MaterialMenuDrawable(Context context, int color, Stroke stroke, int scale, int transformDuration) {
+    public MaterialMenuDrawable(Context context, int color, Stroke stroke, float scale, int transformDuration) {
         Resources resources = context.getResources();
         // convert each separately due to various densities
         this.dip1 = dpToPx(resources, 1) * scale;
