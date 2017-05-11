@@ -62,7 +62,7 @@ Customisation is also available through xml attributes:
 app:mm_color="color"               // Color of drawable
 app:mm_visible="boolean"           // Visible
 app:mm_transformDuration="integer" // Transformation animation duration
-app:mm_scale="integer"             // Scale factor of drawable
+app:mm_scale="float"               // Scale factor of drawable
 app:mm_strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
 app:mm_rtlEnabled="boolean"        // Enabled RTL layout support (flips all drawables)
 app:mm_iconState="enum"            // Set the intial state of the drawable (burger, arrow, x or check)

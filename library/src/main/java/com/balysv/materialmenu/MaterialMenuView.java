@@ -64,7 +64,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         try {
             int color = attr.getColor(R.styleable.MaterialMenuView_mm_color, DEFAULT_COLOR);
             boolean visible = attr.getBoolean(R.styleable.MaterialMenuView_mm_visible, DEFAULT_VISIBLE);
-            int scale = attr.getInteger(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
+            float scale = attr.getFloat(R.styleable.MaterialMenuView_mm_scale, DEFAULT_SCALE);
             int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
             boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
