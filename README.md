@@ -155,6 +155,12 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+## Third Party Bindings
+
+### React Native
+You may now use this library with [React Native](https://github.com/facebook/react-native) via the module [here](https://github.com/prscX/react-native-iconic)
+
+
 Developed By
 --------------------
 Balys Valentukevicius
