@@ -13,7 +13,7 @@ Including in your project
 -------------------------
 
 ```groovy
-compile 'com.balysv.materialmenu:material-menu:2.0.0'
+implementation 'com.balysv.materialmenu:material-menu:2.0.0'
 ```
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.balysv.materialmenu/material-menu/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.balysv.materialmenu/material-menu)
