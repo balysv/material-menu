@@ -179,7 +179,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         }
     }
 
-    @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    @Override public void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         adjustDrawablePadding();
     }
