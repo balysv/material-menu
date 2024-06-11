@@ -1,3 +1,7 @@
+# ⚠️ The project is deprecated ⚠️
+
+Any issues or pull requests will not be addressed. Please consider forking your own version if changes are needed.
+
 Material Menu
 ===============
 
