@@ -69,7 +69,7 @@ app:mm_transformDuration="integer" // Transformation animation duration
 app:mm_scale="integer"             // Scale factor of drawable
 app:mm_strokeWidth="integer"       // Stroke width of icons (can only be 1, 2 or 3)
 app:mm_rtlEnabled="boolean"        // Enabled RTL layout support (flips all drawables)
-app:mm_iconState="enum"            // Set the intial state of the drawable (burger, arrow, x or check)
+app:mm_iconState="enum"            // Set the initial state of the drawable (burger, arrow, x or check)
 ```
 
 ## API
