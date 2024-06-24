@@ -126,7 +126,7 @@ protected void onCreate(Bundle savedInstanceState) {
     toolbar.setNavigationIcon(materialMenu);
 
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-    drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+    drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
         @Override
         public void onDrawerSlide(View drawerView, float slideOffset) {
             materialMenu.setTransformationOffset(
@@ -149,9 +149,9 @@ protected void onCreate(Bundle savedInstanceState) {
         public void onDrawerStateChanged(int newState) {
             if(newState == DrawerLayout.STATE_IDLE) {
                 if(isDrawerOpened) {
-                   menu.setIconState(MaterialMenuDrawable.IconState.ARROW);
+                   materialMenu.setIconState(MaterialMenuDrawable.IconState.ARROW);
                 } else {
-                   menu.setIconState(MaterialMenuDrawable.IconState.BURGER);
+                   materialMenu.setIconState(MaterialMenuDrawable.IconState.BURGER);
                 }
             }
         }
